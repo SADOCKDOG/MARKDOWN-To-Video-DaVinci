@@ -1,0 +1,10 @@
+{
+  "legacy_source_root": "",
+  "branding_dir": "APP TO DaVinci\\assets\\BRANDING",
+  "root_instruction_file": "COPILOT_INSTRUCCIONES_RAIZ.md",
+  "legacy_seed_series_title": "",
+  "production_brief_template": "APP TO DaVinci\\assets\\project-production-brief-template.json",
+  "production_brief_filename": "production-brief.json",
+  "single_active_markdown": true,
+  "include_media_by_default": false
+}

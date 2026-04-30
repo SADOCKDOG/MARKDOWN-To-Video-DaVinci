@@ -1,0 +1,51 @@
+{
+  "brief_status": "pending_user_review",
+  "project_identity": {
+    "series_title": "",
+    "resolve_project_name": "",
+    "source_markdown_name": ""
+  },
+  "approval": {
+    "project_verified": false,
+    "approved_by_user": false,
+    "approval_prompt_reference": "",
+    "notes": ""
+  },
+  "language_and_voices": {
+    "render_languages": [],
+    "subtitle_languages": [],
+    "voice_strategy": "pending",
+    "roles": {
+      "narration_main": "",
+      "titles_cards": "",
+      "cta": "",
+      "institutional": ""
+    }
+  },
+  "music_and_sound": {
+    "background_music": "pending",
+    "music_style": "",
+    "music_intensity": "",
+    "sound_design_notes": ""
+  },
+  "visual_direction": {
+    "cinematic_style": "",
+    "text_style": "",
+    "transition_style": "",
+    "fx_density": "",
+    "futurism_level": ""
+  },
+  "davinci_finish": {
+    "color_look": "",
+    "contrast_profile": "",
+    "texture_profile": "",
+    "resolution": "",
+    "delivery_codec": "",
+    "delivery_target": ""
+  },
+  "implementation_state": {
+    "brief_completed": false,
+    "ready_for_render_plan": false,
+    "last_updated_utc": ""
+  }
+}

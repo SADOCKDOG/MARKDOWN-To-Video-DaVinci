@@ -1,0 +1,48 @@
+{
+  "source_directory": "APP TO DaVinci\\assets\\BRANDING",
+  "selected_assets": {
+    "primary_logo_horizontal": {
+      "path": "BRANDING\\logo.png",
+      "role": "logo principal para ident, apertura y overlays",
+      "dimensions": "optional"
+    },
+    "primary_hero_background": {
+      "path": "BRANDING\\hero-background.png",
+      "role": "hero visual oscuro para ident del canal, intros y pantallas de espera",
+      "dimensions": "optional"
+    },
+    "portrait_support": {
+      "path": "BRANDING\\portrait.png",
+      "role": "recurso opcional para avatar, cierre o CTA con presencia del creador",
+      "dimensions": "optional"
+    },
+    "alt_banner_candidates": [
+      {
+        "path": "BRANDING\\banner-alt-01.png",
+        "dimensions": "optional"
+      },
+      {
+        "path": "BRANDING\\banner-alt-02.png",
+        "dimensions": "optional"
+      },
+      {
+        "path": "BRANDING\\banner-alt-03.png",
+        "dimensions": "optional"
+      }
+    ]
+  },
+  "palette_extracted_from_assets": {
+    "primary": [
+      "#F0F0F0",
+      "#002030",
+      "#104050",
+      "#003040"
+    ],
+    "secondary": [
+      "#000000",
+      "#303030",
+      "#202020",
+      "#404040"
+    ]
+  }
+}

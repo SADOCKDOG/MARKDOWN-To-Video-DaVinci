@@ -1,0 +1,83 @@
+{
+  "channel_handle": "@yourchannel",
+  "channel_display_name": "Your Channel Name",
+  "inference_method": "Generic starter branding profile derived from the bundled documentary/science template. Replace with your own channel identity before production use.",
+  "confidence": {
+    "name": "template",
+    "topic": "template",
+    "visual_identity": "template"
+  },
+  "official_asset_manifest": "branding_asset_manifest.json",
+  "brand_positioning": {
+    "editorial_axis": [
+      "documental divulgativo",
+      "ciencia y tecnologia",
+      "filosofia aplicada a la IA",
+      "futuro humano y cosmos"
+    ],
+    "tone": [
+      "riguroso pero accesible",
+      "futurista sobrio",
+      "cinematografico",
+      "entusiasta sin exageracion"
+    ],
+    "audience": [
+      "publico general curioso",
+      "audiencia interesada en IA",
+      "divulgacion cientifica premium",
+      "youtube documental largo"
+    ]
+  },
+  "visual_language": {
+    "primary_palette": {
+      "hero_black": "#000000",
+      "logo_white": "#F0F0F0",
+      "petrol_blue": "#002030",
+      "deep_teal": "#104050",
+      "graphite": "#303030"
+    },
+    "secondary_palette": {
+      "steel_gray": "#404040",
+      "blue_mid": "#003040",
+      "night_blue": "#001020"
+    },
+    "typography": {
+      "display": [
+        "Montserrat ExtraBold",
+        "Rajdhani Bold",
+        "Orbitron SemiBold"
+      ],
+      "body": [
+        "Inter",
+        "Montserrat Medium"
+      ],
+      "resolve_safe_fallback": [
+        "Arial Bold",
+        "Arial"
+      ]
+    },
+    "composition_rules": [
+      "fondos oscuros con acentos cyan y oro",
+      "usar el logo principal como eje del ident",
+      "preferir negros y azules petroleros sobre paletas demasiado neon",
+      "titulos centrados para aperturas y modulares para lower-thirds",
+      "movimiento limpio con easing suave y sin plantillas estridentes",
+      "usar glow, blur y lineas de interfaz solo como apoyo, no como ruido"
+    ],
+    "motion_principles": [
+      "entradas por fade + scale sutil",
+      "microparallax en intros",
+      "transiciones limpias con blur direccional o light sweep suave",
+      "preferir ritmo documental premium frente a efectos agresivos"
+    ]
+  },
+  "brand_assets_to_build": [
+    "bumper de suscripcion",
+    "intro corta del canal",
+    "intro de episodio",
+    "lower-thirds para instituciones",
+    "cartelas de ideas fuerza",
+    "overlays para conceptos tecnicos",
+    "salida con CTA final"
+  ]
+}

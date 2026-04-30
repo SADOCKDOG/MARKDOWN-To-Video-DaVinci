@@ -1,0 +1,143 @@
+{
+  "template_name": "Premium Resolve Template",
+  "branding_source": "channel_brand_inference.json",
+  "branding_assets": "branding_asset_manifest.json",
+  "channel_identity": {
+    "display_name": "Your Channel Name",
+    "channel_handle": "@yourchannel",
+    "style_tagline": "documental futurista sobre ciencia, IA y cosmos"
+  },
+  "official_assets_usage": {
+    "logo_ident": "BRANDING\\logo.png",
+    "hero_background": "BRANDING\\hero-background.png",
+    "portrait_optional": "BRANDING\\portrait.png"
+  },
+  "timeline_architecture": {
+    "fps": 24,
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "video_tracks": [
+      "V1-base-semantic",
+      "V2-replacements-broll",
+      "V3-branding-intro-outro",
+      "V4-titles-lower-thirds",
+      "V5-fx-overlays"
+    ],
+    "audio_tracks": [
+      "A1-narration-main",
+      "A2-headings-and-cta",
+      "A3-music",
+      "A4-sfx-whooshes",
+      "A5-roomtone-and-support"
+    ],
+    "media_pool_bins": [
+      "brand-intro",
+      "cta-subscribe",
+      "episode-intro",
+      "stock-video",
+      "audio-main",
+      "audio-cta",
+      "music",
+      "sfx",
+      "titles-overlays",
+      "exports"
+    ]
+  },
+  "opening_flow": {
+    "goal": "Crear una apertura premium corta y reconocible sin perjudicar la retencion.",
+    "sequence": [
+      {
+        "segment": "subscribe-bumper",
+        "duration_seconds": 2.5,
+        "visuals": [
+          "fondo negro/petrol blue con logo oficial",
+          "animacion de boton suscribirse moderna y limpia",
+          "microdestellos y lineas UI sutiles"
+        ],
+        "text": [
+          "Suscribete para explorar IA, ciencia y futuro"
+        ],
+        "voice_role": "cta_female"
+      },
+      {
+        "segment": "channel-ident",
+        "duration_seconds": 3.5,
+        "visuals": [
+          "logo horizontal oficial centrado",
+          "light sweep elegante",
+          "transicion de profundidad y glow"
+        ],
+        "text": [
+          "YOUR CHANNEL"
+        ],
+        "voice_role": "none"
+      },
+      {
+        "segment": "clean-transition",
+        "duration_seconds": 1.5,
+        "visuals": [
+          "wipe suave con blur direccional",
+          "bajada de musica y entrada al episodio"
+        ],
+        "text": [],
+        "voice_role": "none"
+      },
+      {
+        "segment": "episode-intro",
+        "duration_seconds": 6.0,
+        "visuals": [
+          "titulo del episodio en dos niveles",
+          "sublinea conceptual",
+          "background semantico relacionado con el tema"
+        ],
+        "text": [
+          "Episodio 01",
+          "Vida espejo y quiralidad"
+        ],
+        "voice_role": "title_cards_female"
+      }
+    ]
+  },
+  "motion_graphics_system": {
+    "title_cards": {
+      "style": "centrado, grande, glow sutil, entrada por scale + fade",
+      "usage": "aperturas, capitulos, tesis, ideas fuerza"
+    },
+    "lower_thirds": {
+      "style": "modular, esquina inferior izquierda, banda oscura con blanco + petrol blue",
+      "usage": "instituciones, figuras, conceptos, nombres propios"
+    },
+    "documentary_overlays": {
+      "style": "reticulas finas, particulas suaves, lineas de interfaz y labels sobre base negra/azul petroleo",
+      "usage": "explicar conceptos tecnicos sin saturar"
+    },
+    "transitions": {
+      "preferred": [
+        "fade clean",
+        "blur directional short",
+        "light sweep sobre logo",
+        "dip to color oscuro"
+      ],
+      "avoid": [
+        "glitches agresivos",
+        "zoom smash",
+        "presets demasiado youtubers"
+      ]
+    }
+  },
+  "voice_roles": {
+    "narration_main": "microsoft_spanish_voice_roles.json -> narration_male_primary",
+    "headings_titles": "microsoft_spanish_voice_roles.json -> title_cards_female",
+    "subscribe_cta": "microsoft_spanish_voice_roles.json -> cta_female",
+    "institutional_support": "microsoft_spanish_voice_roles.json -> institutional_lower_thirds"
+  },
+  "editorial_rules": [
+    "La apertura completa no debe superar 12-14 segundos sin una razon fuerte.",
+    "El logo oficial debe aparecer en la identidad principal del canal y no solo como texto tipografico.",
+    "Los textos deben sentirse de documental premium, no de trailer recargado.",
+    "La capa de branding debe apoyar al episodio, no competir con el contenido cientifico.",
+    "Cada episodio debe conservar consistencia visual pero poder variar la microambientacion por tema."
+  ]
+}

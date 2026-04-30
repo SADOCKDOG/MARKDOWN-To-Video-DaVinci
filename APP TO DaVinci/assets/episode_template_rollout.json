@@ -1,0 +1,104 @@
+{
+  "rollout_name": "Resolve premium template rollout",
+  "applies_to": [
+    "Episodio 01 - Vida espejo y quiralidad",
+    "Episodios 02-10"
+  ],
+  "implementation_order": [
+    {
+      "step": 1,
+      "name": "Generate semantic stock pool",
+      "tooling": [
+        "semantic_sciclip_bridge.py",
+        "semantic_sciclip_bridge.ps1"
+      ],
+      "output": [
+        "videos/sciclip-stock",
+        "videos/stock-sources-sciclip.md",
+        "videos/stock-search-report.json",
+        "videos/semantic-shot-plan.json"
+      ]
+    },
+    {
+      "step": 2,
+      "name": "Prepare branding assets",
+      "tooling": [
+        "channel_brand_inference.json",
+        "resolve_channel_premium_template.json",
+        "episode01_premium_opening_preview.json"
+      ],
+      "output": [
+        "intro package",
+        "subscribe bumper",
+        "episode intro",
+        "documentary titles package"
+      ]
+    },
+    {
+      "step": 3,
+      "name": "Select Spanish voices by role",
+      "tooling": [
+        "generate_microsoft_spanish_voice_catalog.py",
+        "microsoft_spanish_voices.json",
+        "microsoft_spanish_voice_roles.json"
+      ],
+      "output": [
+        "narration voice",
+        "title voice",
+        "cta voice",
+        "institutional support voice"
+      ]
+    },
+    {
+      "step": 4,
+      "name": "Import semantic timeline into Resolve",
+      "tooling": [
+        "resolve21_semantic_import.ps1",
+        "resolve21_episode01_pilot.ps1"
+      ],
+      "output": [
+        "semantic base timeline",
+        "project bins",
+        "reviewable premontage"
+      ]
+    },
+    {
+      "step": 5,
+      "name": "Layer premium channel package",
+      "tooling": [
+        "Resolve title/fusion tracks",
+        "channel intro comps",
+        "lower-thirds system",
+        "brand transitions"
+      ],
+      "output": [
+        "premium opening",
+        "chapter cards",
+        "documentary overlays",
+        "final branded timeline"
+      ]
+    },
+    {
+      "step": 6,
+      "name": "Render master and channel variants",
+      "tooling": [
+        "Resolve render presets",
+        "YouTube 1080p master",
+        "optional shorts/reels excerpt workflow"
+      ],
+      "output": [
+        "channel master mp4",
+        "archive master",
+        "derivative versions"
+      ]
+    }
+  ],
+  "pilot_recommendation": {
+    "episode": "Episodio 01 - Vida espejo y quiralidad",
+    "why": [
+      "ya tiene flujo semantico validado",
+      "beneficia mucho de cartelas cientificas y laboratorio",
+      "sirve para fijar la identidad del canal antes de escalar"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+FINALS PROJECTS/*
+!FINALS PROJECTS/.gitkeep
+MD TO YOUTUBE/*
+!MD TO YOUTUBE/.gitkeep
+APP TO DaVinci/SciClip/.streamlit/secrets.toml
+**/__pycache__/
+**/*.pyc
+**/.pytest_cache/
+**/.mypy_cache/
+**/render-temp/
+*.log

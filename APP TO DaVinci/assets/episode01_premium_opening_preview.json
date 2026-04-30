@@ -1,0 +1,87 @@
+{
+  "episode": "Episodio 01 - Vida espejo y quiralidad",
+  "project_target": "VidaEspejo Pilot v2 - Episodio 01",
+  "preview_goal": "Mostrar como quedaria una apertura premium de canal + episodio antes de entrar al cuerpo semantico.",
+  "sequence": [
+    {
+      "start": 0.0,
+      "end": 2.5,
+      "section": "subscribe-bumper",
+      "voice_role": "cta_female",
+      "voice_recommended": "es-ES-ElviraNeural",
+      "on_screen_text": "Suscribete para explorar IA, ciencia y futuro",
+      "visual_direction": [
+        "fondo negro con petrol blue y logo oficial",
+        "UI minimal de suscripcion",
+        "pulso ligero de boton y campana"
+      ]
+    },
+    {
+      "start": 2.5,
+      "end": 6.0,
+      "section": "channel-ident",
+      "voice_role": "none",
+      "on_screen_text": "DAVID ASUAR",
+      "visual_direction": [
+        "logo.png como ident principal",
+        "nombre del canal como apoyo tipografico",
+        "light sweep horizontal",
+        "microparallax y glow sutil"
+      ]
+    },
+    {
+      "start": 6.0,
+      "end": 7.5,
+      "section": "clean-transition",
+      "voice_role": "none",
+      "on_screen_text": "",
+      "visual_direction": [
+        "blur direccional suave",
+        "caida de musica de ident",
+        "entrada del ambiente del episodio"
+      ]
+    },
+    {
+      "start": 7.5,
+      "end": 13.5,
+      "section": "episode-intro",
+      "voice_role": "title_cards_female",
+      "voice_recommended": "es-ES-ElviraNeural",
+      "on_screen_text": [
+        "Episodio 01",
+        "Vida espejo y quiralidad"
+      ],
+      "visual_direction": [
+        "laboratorio, ADN, microscopio y visuales abstractos controlados",
+        "titulo en dos niveles",
+        "sublinea opcional: 'La quiralidad como frontera entre quimica y vida'"
+      ]
+    },
+    {
+      "start": 13.5,
+      "end": 17.5,
+      "section": "entry-into-body",
+      "voice_role": "narration_male_primary",
+      "voice_recommended": "es-ES-AlvaroNeural",
+      "on_screen_text": "",
+      "visual_direction": [
+        "fade a timeline semantica base",
+        "primer clip cientifico fuerte",
+        "musica ya integrada en modo documental"
+      ]
+    }
+  ],
+  "resolve_insert_points": {
+    "insert_before_timeline": "Episodio 01 - Vida espejo y quiralidad - semantic-auto",
+    "branding_tracks": [
+      "V3-branding-intro-outro",
+      "V4-titles-lower-thirds",
+      "V5-fx-overlays"
+    ],
+    "audio_tracks": [
+      "A2-headings-and-cta",
+      "A3-music",
+      "A4-sfx-whooshes"
+    ]
+  }
+}

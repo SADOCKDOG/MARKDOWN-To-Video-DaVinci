@@ -1,0 +1,52 @@
+ShortName,FriendlyName,Locale,Gender,Status,IsMultilingual,SupportsSpanishRuntime,VoicePersonalities,ContentCategories
+en-AU-WilliamMultilingualNeural,Microsoft WilliamMultilingual Online (Natural) - English (Australia),en-AU,Male,GA,True,True,"Friendly, Positive",General
+en-US-AvaMultilingualNeural,Microsoft AvaMultilingual Online (Natural) - English (United States),en-US,Female,GA,True,True,"Expressive, Caring, Pleasant, Friendly","Conversation, Copilot"
+en-US-EmmaMultilingualNeural,Microsoft EmmaMultilingual Online (Natural) - English (United States),en-US,Female,GA,True,True,"Cheerful, Clear, Conversational","Conversation, Copilot"
+en-US-AndrewMultilingualNeural,Microsoft AndrewMultilingual Online (Natural) - English (United States),en-US,Male,GA,True,True,"Warm, Confident, Authentic, Honest","Conversation, Copilot"
+en-US-BrianMultilingualNeural,Microsoft BrianMultilingual Online (Natural) - English (United States),en-US,Male,GA,True,True,"Approachable, Casual, Sincere","Conversation, Copilot"
+fr-FR-VivienneMultilingualNeural,Microsoft VivienneMultilingual Online (Natural) - French (France),fr-FR,Female,GA,True,True,"Friendly, Positive",General
+es-AR-ElenaNeural,Microsoft Elena Online (Natural) - Spanish (Argentina),es-AR,Female,GA,False,True,"Friendly, Positive",General
+es-AR-TomasNeural,Microsoft Tomas Online (Natural) - Spanish (Argentina),es-AR,Male,GA,False,True,"Friendly, Positive",General
+es-BO-SofiaNeural,Microsoft Sofia Online (Natural) - Spanish (Bolivia),es-BO,Female,GA,False,True,"Friendly, Positive",General
+es-BO-MarceloNeural,Microsoft Marcelo Online (Natural) - Spanish (Bolivia),es-BO,Male,GA,False,True,"Friendly, Positive",General
+es-CL-CatalinaNeural,Microsoft Catalina Online (Natural) - Spanish (Chile),es-CL,Female,GA,False,True,"Friendly, Positive",General
+es-CL-LorenzoNeural,Microsoft Lorenzo Online (Natural) - Spanish (Chile),es-CL,Male,GA,False,True,"Friendly, Positive",General
+es-CO-SalomeNeural,Microsoft Salome Online (Natural) - Spanish (Colombia),es-CO,Female,GA,False,True,"Friendly, Positive",General
+es-CO-GonzaloNeural,Microsoft Gonzalo Online (Natural) - Spanish (Colombia),es-CO,Male,GA,False,True,"Friendly, Positive",General
+es-CR-MariaNeural,Microsoft Maria Online (Natural) - Spanish (Costa Rica),es-CR,Female,GA,False,True,"Friendly, Positive",General
+es-CR-JuanNeural,Microsoft Juan Online (Natural) - Spanish (Costa Rica),es-CR,Male,GA,False,True,"Friendly, Positive",General
+es-CU-BelkysNeural,Microsoft Belkys Online (Natural) - Spanish (Cuba),es-CU,Female,GA,False,True,"Friendly, Positive",General
+es-CU-ManuelNeural,Microsoft Manuel Online (Natural) - Spanish (Cuba),es-CU,Male,GA,False,True,"Friendly, Positive",General
+es-DO-RamonaNeural,Microsoft Ramona Online (Natural) - Spanish (Dominican Republic),es-DO,Female,GA,False,True,"Friendly, Positive",General
+es-DO-EmilioNeural,Microsoft Emilio Online (Natural) - Spanish (Dominican Republic),es-DO,Male,GA,False,True,"Friendly, Positive",General
+es-EC-AndreaNeural,Microsoft Andrea Online (Natural) - Spanish (Ecuador),es-EC,Female,GA,False,True,"Friendly, Positive",General
+es-EC-LuisNeural,Microsoft Luis Online (Natural) - Spanish (Ecuador),es-EC,Male,GA,False,True,"Friendly, Positive",General
+es-ES-ElviraNeural,Microsoft Elvira Online (Natural) - Spanish (Spain),es-ES,Female,GA,False,True,"Friendly, Positive",General
+es-ES-XimenaNeural,Microsoft Ximena Online (Natural) - Spanish (Colombia),es-ES,Female,GA,False,True,"Friendly, Positive",General
+es-ES-AlvaroNeural,Microsoft Alvaro Online (Natural) - Spanish (Spain),es-ES,Male,GA,False,True,"Friendly, Positive",General
+es-GQ-TeresaNeural,Microsoft Teresa Online (Natural) - Spanish (Equatorial Guinea),es-GQ,Female,GA,False,True,"Friendly, Positive",General
+es-GQ-JavierNeural,Microsoft Javier Online (Natural) - Spanish (Equatorial Guinea),es-GQ,Male,GA,False,True,"Friendly, Positive",General
+es-GT-MartaNeural,Microsoft Marta Online (Natural) - Spanish (Guatemala),es-GT,Female,GA,False,True,"Friendly, Positive",General
+es-GT-AndresNeural,Microsoft Andres Online (Natural) - Spanish (Guatemala),es-GT,Male,GA,False,True,"Friendly, Positive",General
+es-HN-KarlaNeural,Microsoft Karla Online (Natural) - Spanish (Honduras),es-HN,Female,GA,False,True,"Friendly, Positive",General
+es-HN-CarlosNeural,Microsoft Carlos Online (Natural) - Spanish (Honduras),es-HN,Male,GA,False,True,"Friendly, Positive",General
+es-MX-DaliaNeural,Microsoft Dalia Online (Natural) - Spanish (Mexico),es-MX,Female,GA,False,True,"Friendly, Positive",General
+es-MX-JorgeNeural,Microsoft Jorge Online (Natural) - Spanish (Mexico),es-MX,Male,GA,False,True,"Friendly, Positive",General
+es-NI-YolandaNeural,Microsoft Yolanda Online (Natural) - Spanish (Nicaragua),es-NI,Female,GA,False,True,"Friendly, Positive",General
+es-NI-FedericoNeural,Microsoft Federico Online (Natural) - Spanish (Nicaragua),es-NI,Male,GA,False,True,"Friendly, Positive",General
+es-PA-MargaritaNeural,Microsoft Margarita Online (Natural) - Spanish (Panama),es-PA,Female,GA,False,True,"Friendly, Positive",General
+es-PA-RobertoNeural,Microsoft Roberto Online (Natural) - Spanish (Panama),es-PA,Male,GA,False,True,"Friendly, Positive",General
+es-PE-CamilaNeural,Microsoft Camila Online (Natural) - Spanish (Peru),es-PE,Female,GA,False,True,"Friendly, Positive",General
+es-PE-AlexNeural,Microsoft Alex Online (Natural) - Spanish (Peru),es-PE,Male,GA,False,True,"Friendly, Positive",General
+es-PR-KarinaNeural,Microsoft Karina Online (Natural) - Spanish (Puerto Rico),es-PR,Female,GA,False,True,"Friendly, Positive",General
+es-PR-VictorNeural,Microsoft Victor Online (Natural) - Spanish (Puerto Rico),es-PR,Male,GA,False,True,"Friendly, Positive",General
+es-PY-TaniaNeural,Microsoft Tania Online (Natural) - Spanish (Paraguay),es-PY,Female,GA,False,True,"Friendly, Positive",General
+es-PY-MarioNeural,Microsoft Mario Online (Natural) - Spanish (Paraguay),es-PY,Male,GA,False,True,"Friendly, Positive",General
+es-SV-LorenaNeural,Microsoft Lorena Online (Natural) - Spanish (El Salvador),es-SV,Female,GA,False,True,"Friendly, Positive",General
+es-SV-RodrigoNeural,Microsoft Rodrigo Online (Natural) - Spanish (El Salvador),es-SV,Male,GA,False,True,"Friendly, Positive",General
+es-US-PalomaNeural,Microsoft Paloma Online (Natural) - Spanish (United States),es-US,Female,GA,False,True,"Friendly, Positive",General
+es-US-AlonsoNeural,Microsoft Alonso Online (Natural) - Spanish (United States),es-US,Male,GA,False,True,"Friendly, Positive",General
+es-UY-ValentinaNeural,Microsoft Valentina Online (Natural) - Spanish (Uruguay),es-UY,Female,GA,False,True,"Friendly, Positive",General
+es-UY-MateoNeural,Microsoft Mateo Online (Natural) - Spanish (Uruguay),es-UY,Male,GA,False,True,"Friendly, Positive",General
+es-VE-PaolaNeural,Microsoft Paola Online (Natural) - Spanish (Venezuela),es-VE,Female,GA,False,True,"Friendly, Positive",General
+es-VE-SebastianNeural,Microsoft Sebastian Online (Natural) - Spanish (Venezuela),es-VE,Male,GA,False,True,"Friendly, Positive",General

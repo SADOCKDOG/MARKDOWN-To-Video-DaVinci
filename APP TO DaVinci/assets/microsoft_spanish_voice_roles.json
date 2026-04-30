@@ -1,0 +1,2313 @@
+{
+  "available_count": 51,
+  "roles": {
+    "multilingual_male_spanish": [
+      {
+        "ShortName": "en-US-AndrewMultilingualNeural",
+        "FriendlyName": "Microsoft AndrewMultilingual Online (Natural) - English (United States)",
+        "Locale": "en-US",
+        "Gender": "Male",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "en-US-BrianMultilingualNeural",
+        "FriendlyName": "Microsoft BrianMultilingual Online (Natural) - English (United States)",
+        "Locale": "en-US",
+        "Gender": "Male",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "en-AU-WilliamMultilingualNeural",
+        "FriendlyName": "Microsoft WilliamMultilingual Online (Natural) - English (Australia)",
+        "Locale": "en-AU",
+        "Gender": "Male",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PE-AlexNeural",
+        "FriendlyName": "Microsoft Alex Online (Natural) - Spanish (Peru)",
+        "Locale": "es-PE",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-US-AlonsoNeural",
+        "FriendlyName": "Microsoft Alonso Online (Natural) - Spanish (United States)",
+        "Locale": "es-US",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-ES-AlvaroNeural",
+        "FriendlyName": "Microsoft Alvaro Online (Natural) - Spanish (Spain)",
+        "Locale": "es-ES",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-GT-AndresNeural",
+        "FriendlyName": "Microsoft Andres Online (Natural) - Spanish (Guatemala)",
+        "Locale": "es-GT",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-HN-CarlosNeural",
+        "FriendlyName": "Microsoft Carlos Online (Natural) - Spanish (Honduras)",
+        "Locale": "es-HN",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-DO-EmilioNeural",
+        "FriendlyName": "Microsoft Emilio Online (Natural) - Spanish (Dominican Republic)",
+        "Locale": "es-DO",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-NI-FedericoNeural",
+        "FriendlyName": "Microsoft Federico Online (Natural) - Spanish (Nicaragua)",
+        "Locale": "es-NI",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CO-GonzaloNeural",
+        "FriendlyName": "Microsoft Gonzalo Online (Natural) - Spanish (Colombia)",
+        "Locale": "es-CO",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-GQ-JavierNeural",
+        "FriendlyName": "Microsoft Javier Online (Natural) - Spanish (Equatorial Guinea)",
+        "Locale": "es-GQ",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-MX-JorgeNeural",
+        "FriendlyName": "Microsoft Jorge Online (Natural) - Spanish (Mexico)",
+        "Locale": "es-MX",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CR-JuanNeural",
+        "FriendlyName": "Microsoft Juan Online (Natural) - Spanish (Costa Rica)",
+        "Locale": "es-CR",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CL-LorenzoNeural",
+        "FriendlyName": "Microsoft Lorenzo Online (Natural) - Spanish (Chile)",
+        "Locale": "es-CL",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-EC-LuisNeural",
+        "FriendlyName": "Microsoft Luis Online (Natural) - Spanish (Ecuador)",
+        "Locale": "es-EC",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CU-ManuelNeural",
+        "FriendlyName": "Microsoft Manuel Online (Natural) - Spanish (Cuba)",
+        "Locale": "es-CU",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-BO-MarceloNeural",
+        "FriendlyName": "Microsoft Marcelo Online (Natural) - Spanish (Bolivia)",
+        "Locale": "es-BO",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PY-MarioNeural",
+        "FriendlyName": "Microsoft Mario Online (Natural) - Spanish (Paraguay)",
+        "Locale": "es-PY",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-UY-MateoNeural",
+        "FriendlyName": "Microsoft Mateo Online (Natural) - Spanish (Uruguay)",
+        "Locale": "es-UY",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PA-RobertoNeural",
+        "FriendlyName": "Microsoft Roberto Online (Natural) - Spanish (Panama)",
+        "Locale": "es-PA",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-SV-RodrigoNeural",
+        "FriendlyName": "Microsoft Rodrigo Online (Natural) - Spanish (El Salvador)",
+        "Locale": "es-SV",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-VE-SebastianNeural",
+        "FriendlyName": "Microsoft Sebastian Online (Natural) - Spanish (Venezuela)",
+        "Locale": "es-VE",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-AR-TomasNeural",
+        "FriendlyName": "Microsoft Tomas Online (Natural) - Spanish (Argentina)",
+        "Locale": "es-AR",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PR-VictorNeural",
+        "FriendlyName": "Microsoft Victor Online (Natural) - Spanish (Puerto Rico)",
+        "Locale": "es-PR",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      }
+    ],
+    "multilingual_female_spanish": [
+      {
+        "ShortName": "es-ES-XimenaNeural",
+        "FriendlyName": "Microsoft Ximena Online (Natural) - Spanish (Colombia)",
+        "Locale": "es-ES",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-ES-XimenaNeural",
+        "FriendlyName": "Microsoft Ximena Online (Natural) - Spanish (Colombia)",
+        "Locale": "es-ES",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "en-US-AvaMultilingualNeural",
+        "FriendlyName": "Microsoft AvaMultilingual Online (Natural) - English (United States)",
+        "Locale": "en-US",
+        "Gender": "Female",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "en-US-EmmaMultilingualNeural",
+        "FriendlyName": "Microsoft EmmaMultilingual Online (Natural) - English (United States)",
+        "Locale": "en-US",
+        "Gender": "Female",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "fr-FR-VivienneMultilingualNeural",
+        "FriendlyName": "Microsoft VivienneMultilingual Online (Natural) - French (France)",
+        "Locale": "fr-FR",
+        "Gender": "Female",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-EC-AndreaNeural",
+        "FriendlyName": "Microsoft Andrea Online (Natural) - Spanish (Ecuador)",
+        "Locale": "es-EC",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CU-BelkysNeural",
+        "FriendlyName": "Microsoft Belkys Online (Natural) - Spanish (Cuba)",
+        "Locale": "es-CU",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PE-CamilaNeural",
+        "FriendlyName": "Microsoft Camila Online (Natural) - Spanish (Peru)",
+        "Locale": "es-PE",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CL-CatalinaNeural",
+        "FriendlyName": "Microsoft Catalina Online (Natural) - Spanish (Chile)",
+        "Locale": "es-CL",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-MX-DaliaNeural",
+        "FriendlyName": "Microsoft Dalia Online (Natural) - Spanish (Mexico)",
+        "Locale": "es-MX",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-AR-ElenaNeural",
+        "FriendlyName": "Microsoft Elena Online (Natural) - Spanish (Argentina)",
+        "Locale": "es-AR",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-ES-ElviraNeural",
+        "FriendlyName": "Microsoft Elvira Online (Natural) - Spanish (Spain)",
+        "Locale": "es-ES",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PR-KarinaNeural",
+        "FriendlyName": "Microsoft Karina Online (Natural) - Spanish (Puerto Rico)",
+        "Locale": "es-PR",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-HN-KarlaNeural",
+        "FriendlyName": "Microsoft Karla Online (Natural) - Spanish (Honduras)",
+        "Locale": "es-HN",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-SV-LorenaNeural",
+        "FriendlyName": "Microsoft Lorena Online (Natural) - Spanish (El Salvador)",
+        "Locale": "es-SV",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PA-MargaritaNeural",
+        "FriendlyName": "Microsoft Margarita Online (Natural) - Spanish (Panama)",
+        "Locale": "es-PA",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CR-MariaNeural",
+        "FriendlyName": "Microsoft Maria Online (Natural) - Spanish (Costa Rica)",
+        "Locale": "es-CR",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-GT-MartaNeural",
+        "FriendlyName": "Microsoft Marta Online (Natural) - Spanish (Guatemala)",
+        "Locale": "es-GT",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-US-PalomaNeural",
+        "FriendlyName": "Microsoft Paloma Online (Natural) - Spanish (United States)",
+        "Locale": "es-US",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-VE-PaolaNeural",
+        "FriendlyName": "Microsoft Paola Online (Natural) - Spanish (Venezuela)",
+        "Locale": "es-VE",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-DO-RamonaNeural",
+        "FriendlyName": "Microsoft Ramona Online (Natural) - Spanish (Dominican Republic)",
+        "Locale": "es-DO",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CO-SalomeNeural",
+        "FriendlyName": "Microsoft Salome Online (Natural) - Spanish (Colombia)",
+        "Locale": "es-CO",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-BO-SofiaNeural",
+        "FriendlyName": "Microsoft Sofia Online (Natural) - Spanish (Bolivia)",
+        "Locale": "es-BO",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PY-TaniaNeural",
+        "FriendlyName": "Microsoft Tania Online (Natural) - Spanish (Paraguay)",
+        "Locale": "es-PY",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-GQ-TeresaNeural",
+        "FriendlyName": "Microsoft Teresa Online (Natural) - Spanish (Equatorial Guinea)",
+        "Locale": "es-GQ",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-UY-ValentinaNeural",
+        "FriendlyName": "Microsoft Valentina Online (Natural) - Spanish (Uruguay)",
+        "Locale": "es-UY",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-NI-YolandaNeural",
+        "FriendlyName": "Microsoft Yolanda Online (Natural) - Spanish (Nicaragua)",
+        "Locale": "es-NI",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      }
+    ],
+    "narration_male_primary": [
+      {
+        "ShortName": "en-US-AndrewMultilingualNeural",
+        "FriendlyName": "Microsoft AndrewMultilingual Online (Natural) - English (United States)",
+        "Locale": "en-US",
+        "Gender": "Male",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "en-US-BrianMultilingualNeural",
+        "FriendlyName": "Microsoft BrianMultilingual Online (Natural) - English (United States)",
+        "Locale": "en-US",
+        "Gender": "Male",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "en-AU-WilliamMultilingualNeural",
+        "FriendlyName": "Microsoft WilliamMultilingual Online (Natural) - English (Australia)",
+        "Locale": "en-AU",
+        "Gender": "Male",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PE-AlexNeural",
+        "FriendlyName": "Microsoft Alex Online (Natural) - Spanish (Peru)",
+        "Locale": "es-PE",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-US-AlonsoNeural",
+        "FriendlyName": "Microsoft Alonso Online (Natural) - Spanish (United States)",
+        "Locale": "es-US",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-ES-AlvaroNeural",
+        "FriendlyName": "Microsoft Alvaro Online (Natural) - Spanish (Spain)",
+        "Locale": "es-ES",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-GT-AndresNeural",
+        "FriendlyName": "Microsoft Andres Online (Natural) - Spanish (Guatemala)",
+        "Locale": "es-GT",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-HN-CarlosNeural",
+        "FriendlyName": "Microsoft Carlos Online (Natural) - Spanish (Honduras)",
+        "Locale": "es-HN",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-DO-EmilioNeural",
+        "FriendlyName": "Microsoft Emilio Online (Natural) - Spanish (Dominican Republic)",
+        "Locale": "es-DO",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-NI-FedericoNeural",
+        "FriendlyName": "Microsoft Federico Online (Natural) - Spanish (Nicaragua)",
+        "Locale": "es-NI",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CO-GonzaloNeural",
+        "FriendlyName": "Microsoft Gonzalo Online (Natural) - Spanish (Colombia)",
+        "Locale": "es-CO",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-GQ-JavierNeural",
+        "FriendlyName": "Microsoft Javier Online (Natural) - Spanish (Equatorial Guinea)",
+        "Locale": "es-GQ",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-MX-JorgeNeural",
+        "FriendlyName": "Microsoft Jorge Online (Natural) - Spanish (Mexico)",
+        "Locale": "es-MX",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CR-JuanNeural",
+        "FriendlyName": "Microsoft Juan Online (Natural) - Spanish (Costa Rica)",
+        "Locale": "es-CR",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CL-LorenzoNeural",
+        "FriendlyName": "Microsoft Lorenzo Online (Natural) - Spanish (Chile)",
+        "Locale": "es-CL",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-EC-LuisNeural",
+        "FriendlyName": "Microsoft Luis Online (Natural) - Spanish (Ecuador)",
+        "Locale": "es-EC",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CU-ManuelNeural",
+        "FriendlyName": "Microsoft Manuel Online (Natural) - Spanish (Cuba)",
+        "Locale": "es-CU",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-BO-MarceloNeural",
+        "FriendlyName": "Microsoft Marcelo Online (Natural) - Spanish (Bolivia)",
+        "Locale": "es-BO",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PY-MarioNeural",
+        "FriendlyName": "Microsoft Mario Online (Natural) - Spanish (Paraguay)",
+        "Locale": "es-PY",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-UY-MateoNeural",
+        "FriendlyName": "Microsoft Mateo Online (Natural) - Spanish (Uruguay)",
+        "Locale": "es-UY",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PA-RobertoNeural",
+        "FriendlyName": "Microsoft Roberto Online (Natural) - Spanish (Panama)",
+        "Locale": "es-PA",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-SV-RodrigoNeural",
+        "FriendlyName": "Microsoft Rodrigo Online (Natural) - Spanish (El Salvador)",
+        "Locale": "es-SV",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-VE-SebastianNeural",
+        "FriendlyName": "Microsoft Sebastian Online (Natural) - Spanish (Venezuela)",
+        "Locale": "es-VE",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-AR-TomasNeural",
+        "FriendlyName": "Microsoft Tomas Online (Natural) - Spanish (Argentina)",
+        "Locale": "es-AR",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PR-VictorNeural",
+        "FriendlyName": "Microsoft Victor Online (Natural) - Spanish (Puerto Rico)",
+        "Locale": "es-PR",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      }
+    ],
+    "narration_female_primary": [
+      {
+        "ShortName": "es-ES-XimenaNeural",
+        "FriendlyName": "Microsoft Ximena Online (Natural) - Spanish (Colombia)",
+        "Locale": "es-ES",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-ES-XimenaNeural",
+        "FriendlyName": "Microsoft Ximena Online (Natural) - Spanish (Colombia)",
+        "Locale": "es-ES",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "en-US-AvaMultilingualNeural",
+        "FriendlyName": "Microsoft AvaMultilingual Online (Natural) - English (United States)",
+        "Locale": "en-US",
+        "Gender": "Female",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "en-US-EmmaMultilingualNeural",
+        "FriendlyName": "Microsoft EmmaMultilingual Online (Natural) - English (United States)",
+        "Locale": "en-US",
+        "Gender": "Female",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "fr-FR-VivienneMultilingualNeural",
+        "FriendlyName": "Microsoft VivienneMultilingual Online (Natural) - French (France)",
+        "Locale": "fr-FR",
+        "Gender": "Female",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-EC-AndreaNeural",
+        "FriendlyName": "Microsoft Andrea Online (Natural) - Spanish (Ecuador)",
+        "Locale": "es-EC",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CU-BelkysNeural",
+        "FriendlyName": "Microsoft Belkys Online (Natural) - Spanish (Cuba)",
+        "Locale": "es-CU",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PE-CamilaNeural",
+        "FriendlyName": "Microsoft Camila Online (Natural) - Spanish (Peru)",
+        "Locale": "es-PE",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CL-CatalinaNeural",
+        "FriendlyName": "Microsoft Catalina Online (Natural) - Spanish (Chile)",
+        "Locale": "es-CL",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-MX-DaliaNeural",
+        "FriendlyName": "Microsoft Dalia Online (Natural) - Spanish (Mexico)",
+        "Locale": "es-MX",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-AR-ElenaNeural",
+        "FriendlyName": "Microsoft Elena Online (Natural) - Spanish (Argentina)",
+        "Locale": "es-AR",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-ES-ElviraNeural",
+        "FriendlyName": "Microsoft Elvira Online (Natural) - Spanish (Spain)",
+        "Locale": "es-ES",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PR-KarinaNeural",
+        "FriendlyName": "Microsoft Karina Online (Natural) - Spanish (Puerto Rico)",
+        "Locale": "es-PR",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-HN-KarlaNeural",
+        "FriendlyName": "Microsoft Karla Online (Natural) - Spanish (Honduras)",
+        "Locale": "es-HN",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-SV-LorenaNeural",
+        "FriendlyName": "Microsoft Lorena Online (Natural) - Spanish (El Salvador)",
+        "Locale": "es-SV",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PA-MargaritaNeural",
+        "FriendlyName": "Microsoft Margarita Online (Natural) - Spanish (Panama)",
+        "Locale": "es-PA",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CR-MariaNeural",
+        "FriendlyName": "Microsoft Maria Online (Natural) - Spanish (Costa Rica)",
+        "Locale": "es-CR",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-GT-MartaNeural",
+        "FriendlyName": "Microsoft Marta Online (Natural) - Spanish (Guatemala)",
+        "Locale": "es-GT",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-US-PalomaNeural",
+        "FriendlyName": "Microsoft Paloma Online (Natural) - Spanish (United States)",
+        "Locale": "es-US",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-VE-PaolaNeural",
+        "FriendlyName": "Microsoft Paola Online (Natural) - Spanish (Venezuela)",
+        "Locale": "es-VE",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-DO-RamonaNeural",
+        "FriendlyName": "Microsoft Ramona Online (Natural) - Spanish (Dominican Republic)",
+        "Locale": "es-DO",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CO-SalomeNeural",
+        "FriendlyName": "Microsoft Salome Online (Natural) - Spanish (Colombia)",
+        "Locale": "es-CO",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-BO-SofiaNeural",
+        "FriendlyName": "Microsoft Sofia Online (Natural) - Spanish (Bolivia)",
+        "Locale": "es-BO",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PY-TaniaNeural",
+        "FriendlyName": "Microsoft Tania Online (Natural) - Spanish (Paraguay)",
+        "Locale": "es-PY",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-GQ-TeresaNeural",
+        "FriendlyName": "Microsoft Teresa Online (Natural) - Spanish (Equatorial Guinea)",
+        "Locale": "es-GQ",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-UY-ValentinaNeural",
+        "FriendlyName": "Microsoft Valentina Online (Natural) - Spanish (Uruguay)",
+        "Locale": "es-UY",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-NI-YolandaNeural",
+        "FriendlyName": "Microsoft Yolanda Online (Natural) - Spanish (Nicaragua)",
+        "Locale": "es-NI",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      }
+    ],
+    "title_cards_female": [
+      {
+        "ShortName": "es-ES-XimenaNeural",
+        "FriendlyName": "Microsoft Ximena Online (Natural) - Spanish (Colombia)",
+        "Locale": "es-ES",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-ES-XimenaNeural",
+        "FriendlyName": "Microsoft Ximena Online (Natural) - Spanish (Colombia)",
+        "Locale": "es-ES",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "en-US-AvaMultilingualNeural",
+        "FriendlyName": "Microsoft AvaMultilingual Online (Natural) - English (United States)",
+        "Locale": "en-US",
+        "Gender": "Female",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "en-US-EmmaMultilingualNeural",
+        "FriendlyName": "Microsoft EmmaMultilingual Online (Natural) - English (United States)",
+        "Locale": "en-US",
+        "Gender": "Female",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "fr-FR-VivienneMultilingualNeural",
+        "FriendlyName": "Microsoft VivienneMultilingual Online (Natural) - French (France)",
+        "Locale": "fr-FR",
+        "Gender": "Female",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-EC-AndreaNeural",
+        "FriendlyName": "Microsoft Andrea Online (Natural) - Spanish (Ecuador)",
+        "Locale": "es-EC",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CU-BelkysNeural",
+        "FriendlyName": "Microsoft Belkys Online (Natural) - Spanish (Cuba)",
+        "Locale": "es-CU",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PE-CamilaNeural",
+        "FriendlyName": "Microsoft Camila Online (Natural) - Spanish (Peru)",
+        "Locale": "es-PE",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CL-CatalinaNeural",
+        "FriendlyName": "Microsoft Catalina Online (Natural) - Spanish (Chile)",
+        "Locale": "es-CL",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-MX-DaliaNeural",
+        "FriendlyName": "Microsoft Dalia Online (Natural) - Spanish (Mexico)",
+        "Locale": "es-MX",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-AR-ElenaNeural",
+        "FriendlyName": "Microsoft Elena Online (Natural) - Spanish (Argentina)",
+        "Locale": "es-AR",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-ES-ElviraNeural",
+        "FriendlyName": "Microsoft Elvira Online (Natural) - Spanish (Spain)",
+        "Locale": "es-ES",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PR-KarinaNeural",
+        "FriendlyName": "Microsoft Karina Online (Natural) - Spanish (Puerto Rico)",
+        "Locale": "es-PR",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-HN-KarlaNeural",
+        "FriendlyName": "Microsoft Karla Online (Natural) - Spanish (Honduras)",
+        "Locale": "es-HN",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-SV-LorenaNeural",
+        "FriendlyName": "Microsoft Lorena Online (Natural) - Spanish (El Salvador)",
+        "Locale": "es-SV",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PA-MargaritaNeural",
+        "FriendlyName": "Microsoft Margarita Online (Natural) - Spanish (Panama)",
+        "Locale": "es-PA",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CR-MariaNeural",
+        "FriendlyName": "Microsoft Maria Online (Natural) - Spanish (Costa Rica)",
+        "Locale": "es-CR",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-GT-MartaNeural",
+        "FriendlyName": "Microsoft Marta Online (Natural) - Spanish (Guatemala)",
+        "Locale": "es-GT",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-US-PalomaNeural",
+        "FriendlyName": "Microsoft Paloma Online (Natural) - Spanish (United States)",
+        "Locale": "es-US",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-VE-PaolaNeural",
+        "FriendlyName": "Microsoft Paola Online (Natural) - Spanish (Venezuela)",
+        "Locale": "es-VE",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-DO-RamonaNeural",
+        "FriendlyName": "Microsoft Ramona Online (Natural) - Spanish (Dominican Republic)",
+        "Locale": "es-DO",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CO-SalomeNeural",
+        "FriendlyName": "Microsoft Salome Online (Natural) - Spanish (Colombia)",
+        "Locale": "es-CO",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-BO-SofiaNeural",
+        "FriendlyName": "Microsoft Sofia Online (Natural) - Spanish (Bolivia)",
+        "Locale": "es-BO",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PY-TaniaNeural",
+        "FriendlyName": "Microsoft Tania Online (Natural) - Spanish (Paraguay)",
+        "Locale": "es-PY",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-GQ-TeresaNeural",
+        "FriendlyName": "Microsoft Teresa Online (Natural) - Spanish (Equatorial Guinea)",
+        "Locale": "es-GQ",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-UY-ValentinaNeural",
+        "FriendlyName": "Microsoft Valentina Online (Natural) - Spanish (Uruguay)",
+        "Locale": "es-UY",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-NI-YolandaNeural",
+        "FriendlyName": "Microsoft Yolanda Online (Natural) - Spanish (Nicaragua)",
+        "Locale": "es-NI",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      }
+    ],
+    "cta_female": [
+      {
+        "ShortName": "es-ES-XimenaNeural",
+        "FriendlyName": "Microsoft Ximena Online (Natural) - Spanish (Colombia)",
+        "Locale": "es-ES",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-ES-XimenaNeural",
+        "FriendlyName": "Microsoft Ximena Online (Natural) - Spanish (Colombia)",
+        "Locale": "es-ES",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "en-US-AvaMultilingualNeural",
+        "FriendlyName": "Microsoft AvaMultilingual Online (Natural) - English (United States)",
+        "Locale": "en-US",
+        "Gender": "Female",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "en-US-EmmaMultilingualNeural",
+        "FriendlyName": "Microsoft EmmaMultilingual Online (Natural) - English (United States)",
+        "Locale": "en-US",
+        "Gender": "Female",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "fr-FR-VivienneMultilingualNeural",
+        "FriendlyName": "Microsoft VivienneMultilingual Online (Natural) - French (France)",
+        "Locale": "fr-FR",
+        "Gender": "Female",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-EC-AndreaNeural",
+        "FriendlyName": "Microsoft Andrea Online (Natural) - Spanish (Ecuador)",
+        "Locale": "es-EC",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CU-BelkysNeural",
+        "FriendlyName": "Microsoft Belkys Online (Natural) - Spanish (Cuba)",
+        "Locale": "es-CU",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PE-CamilaNeural",
+        "FriendlyName": "Microsoft Camila Online (Natural) - Spanish (Peru)",
+        "Locale": "es-PE",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CL-CatalinaNeural",
+        "FriendlyName": "Microsoft Catalina Online (Natural) - Spanish (Chile)",
+        "Locale": "es-CL",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-MX-DaliaNeural",
+        "FriendlyName": "Microsoft Dalia Online (Natural) - Spanish (Mexico)",
+        "Locale": "es-MX",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-AR-ElenaNeural",
+        "FriendlyName": "Microsoft Elena Online (Natural) - Spanish (Argentina)",
+        "Locale": "es-AR",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-ES-ElviraNeural",
+        "FriendlyName": "Microsoft Elvira Online (Natural) - Spanish (Spain)",
+        "Locale": "es-ES",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PR-KarinaNeural",
+        "FriendlyName": "Microsoft Karina Online (Natural) - Spanish (Puerto Rico)",
+        "Locale": "es-PR",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-HN-KarlaNeural",
+        "FriendlyName": "Microsoft Karla Online (Natural) - Spanish (Honduras)",
+        "Locale": "es-HN",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-SV-LorenaNeural",
+        "FriendlyName": "Microsoft Lorena Online (Natural) - Spanish (El Salvador)",
+        "Locale": "es-SV",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PA-MargaritaNeural",
+        "FriendlyName": "Microsoft Margarita Online (Natural) - Spanish (Panama)",
+        "Locale": "es-PA",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CR-MariaNeural",
+        "FriendlyName": "Microsoft Maria Online (Natural) - Spanish (Costa Rica)",
+        "Locale": "es-CR",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-GT-MartaNeural",
+        "FriendlyName": "Microsoft Marta Online (Natural) - Spanish (Guatemala)",
+        "Locale": "es-GT",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-US-PalomaNeural",
+        "FriendlyName": "Microsoft Paloma Online (Natural) - Spanish (United States)",
+        "Locale": "es-US",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-VE-PaolaNeural",
+        "FriendlyName": "Microsoft Paola Online (Natural) - Spanish (Venezuela)",
+        "Locale": "es-VE",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-DO-RamonaNeural",
+        "FriendlyName": "Microsoft Ramona Online (Natural) - Spanish (Dominican Republic)",
+        "Locale": "es-DO",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CO-SalomeNeural",
+        "FriendlyName": "Microsoft Salome Online (Natural) - Spanish (Colombia)",
+        "Locale": "es-CO",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-BO-SofiaNeural",
+        "FriendlyName": "Microsoft Sofia Online (Natural) - Spanish (Bolivia)",
+        "Locale": "es-BO",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PY-TaniaNeural",
+        "FriendlyName": "Microsoft Tania Online (Natural) - Spanish (Paraguay)",
+        "Locale": "es-PY",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-GQ-TeresaNeural",
+        "FriendlyName": "Microsoft Teresa Online (Natural) - Spanish (Equatorial Guinea)",
+        "Locale": "es-GQ",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-UY-ValentinaNeural",
+        "FriendlyName": "Microsoft Valentina Online (Natural) - Spanish (Uruguay)",
+        "Locale": "es-UY",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-NI-YolandaNeural",
+        "FriendlyName": "Microsoft Yolanda Online (Natural) - Spanish (Nicaragua)",
+        "Locale": "es-NI",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      }
+    ],
+    "cta_male": [
+      {
+        "ShortName": "en-US-AndrewMultilingualNeural",
+        "FriendlyName": "Microsoft AndrewMultilingual Online (Natural) - English (United States)",
+        "Locale": "en-US",
+        "Gender": "Male",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "en-US-BrianMultilingualNeural",
+        "FriendlyName": "Microsoft BrianMultilingual Online (Natural) - English (United States)",
+        "Locale": "en-US",
+        "Gender": "Male",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "en-AU-WilliamMultilingualNeural",
+        "FriendlyName": "Microsoft WilliamMultilingual Online (Natural) - English (Australia)",
+        "Locale": "en-AU",
+        "Gender": "Male",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PE-AlexNeural",
+        "FriendlyName": "Microsoft Alex Online (Natural) - Spanish (Peru)",
+        "Locale": "es-PE",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-US-AlonsoNeural",
+        "FriendlyName": "Microsoft Alonso Online (Natural) - Spanish (United States)",
+        "Locale": "es-US",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-ES-AlvaroNeural",
+        "FriendlyName": "Microsoft Alvaro Online (Natural) - Spanish (Spain)",
+        "Locale": "es-ES",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-GT-AndresNeural",
+        "FriendlyName": "Microsoft Andres Online (Natural) - Spanish (Guatemala)",
+        "Locale": "es-GT",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-HN-CarlosNeural",
+        "FriendlyName": "Microsoft Carlos Online (Natural) - Spanish (Honduras)",
+        "Locale": "es-HN",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-DO-EmilioNeural",
+        "FriendlyName": "Microsoft Emilio Online (Natural) - Spanish (Dominican Republic)",
+        "Locale": "es-DO",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-NI-FedericoNeural",
+        "FriendlyName": "Microsoft Federico Online (Natural) - Spanish (Nicaragua)",
+        "Locale": "es-NI",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CO-GonzaloNeural",
+        "FriendlyName": "Microsoft Gonzalo Online (Natural) - Spanish (Colombia)",
+        "Locale": "es-CO",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-GQ-JavierNeural",
+        "FriendlyName": "Microsoft Javier Online (Natural) - Spanish (Equatorial Guinea)",
+        "Locale": "es-GQ",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-MX-JorgeNeural",
+        "FriendlyName": "Microsoft Jorge Online (Natural) - Spanish (Mexico)",
+        "Locale": "es-MX",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CR-JuanNeural",
+        "FriendlyName": "Microsoft Juan Online (Natural) - Spanish (Costa Rica)",
+        "Locale": "es-CR",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CL-LorenzoNeural",
+        "FriendlyName": "Microsoft Lorenzo Online (Natural) - Spanish (Chile)",
+        "Locale": "es-CL",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-EC-LuisNeural",
+        "FriendlyName": "Microsoft Luis Online (Natural) - Spanish (Ecuador)",
+        "Locale": "es-EC",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CU-ManuelNeural",
+        "FriendlyName": "Microsoft Manuel Online (Natural) - Spanish (Cuba)",
+        "Locale": "es-CU",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-BO-MarceloNeural",
+        "FriendlyName": "Microsoft Marcelo Online (Natural) - Spanish (Bolivia)",
+        "Locale": "es-BO",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PY-MarioNeural",
+        "FriendlyName": "Microsoft Mario Online (Natural) - Spanish (Paraguay)",
+        "Locale": "es-PY",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-UY-MateoNeural",
+        "FriendlyName": "Microsoft Mateo Online (Natural) - Spanish (Uruguay)",
+        "Locale": "es-UY",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PA-RobertoNeural",
+        "FriendlyName": "Microsoft Roberto Online (Natural) - Spanish (Panama)",
+        "Locale": "es-PA",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-SV-RodrigoNeural",
+        "FriendlyName": "Microsoft Rodrigo Online (Natural) - Spanish (El Salvador)",
+        "Locale": "es-SV",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-VE-SebastianNeural",
+        "FriendlyName": "Microsoft Sebastian Online (Natural) - Spanish (Venezuela)",
+        "Locale": "es-VE",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-AR-TomasNeural",
+        "FriendlyName": "Microsoft Tomas Online (Natural) - Spanish (Argentina)",
+        "Locale": "es-AR",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PR-VictorNeural",
+        "FriendlyName": "Microsoft Victor Online (Natural) - Spanish (Puerto Rico)",
+        "Locale": "es-PR",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      }
+    ],
+    "institutional_lower_thirds": [
+      {
+        "ShortName": "en-US-AndrewMultilingualNeural",
+        "FriendlyName": "Microsoft AndrewMultilingual Online (Natural) - English (United States)",
+        "Locale": "en-US",
+        "Gender": "Male",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "en-US-BrianMultilingualNeural",
+        "FriendlyName": "Microsoft BrianMultilingual Online (Natural) - English (United States)",
+        "Locale": "en-US",
+        "Gender": "Male",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "en-AU-WilliamMultilingualNeural",
+        "FriendlyName": "Microsoft WilliamMultilingual Online (Natural) - English (Australia)",
+        "Locale": "en-AU",
+        "Gender": "Male",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PE-AlexNeural",
+        "FriendlyName": "Microsoft Alex Online (Natural) - Spanish (Peru)",
+        "Locale": "es-PE",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-US-AlonsoNeural",
+        "FriendlyName": "Microsoft Alonso Online (Natural) - Spanish (United States)",
+        "Locale": "es-US",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-ES-AlvaroNeural",
+        "FriendlyName": "Microsoft Alvaro Online (Natural) - Spanish (Spain)",
+        "Locale": "es-ES",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-GT-AndresNeural",
+        "FriendlyName": "Microsoft Andres Online (Natural) - Spanish (Guatemala)",
+        "Locale": "es-GT",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-HN-CarlosNeural",
+        "FriendlyName": "Microsoft Carlos Online (Natural) - Spanish (Honduras)",
+        "Locale": "es-HN",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-DO-EmilioNeural",
+        "FriendlyName": "Microsoft Emilio Online (Natural) - Spanish (Dominican Republic)",
+        "Locale": "es-DO",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-NI-FedericoNeural",
+        "FriendlyName": "Microsoft Federico Online (Natural) - Spanish (Nicaragua)",
+        "Locale": "es-NI",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CO-GonzaloNeural",
+        "FriendlyName": "Microsoft Gonzalo Online (Natural) - Spanish (Colombia)",
+        "Locale": "es-CO",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-GQ-JavierNeural",
+        "FriendlyName": "Microsoft Javier Online (Natural) - Spanish (Equatorial Guinea)",
+        "Locale": "es-GQ",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-MX-JorgeNeural",
+        "FriendlyName": "Microsoft Jorge Online (Natural) - Spanish (Mexico)",
+        "Locale": "es-MX",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CR-JuanNeural",
+        "FriendlyName": "Microsoft Juan Online (Natural) - Spanish (Costa Rica)",
+        "Locale": "es-CR",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CL-LorenzoNeural",
+        "FriendlyName": "Microsoft Lorenzo Online (Natural) - Spanish (Chile)",
+        "Locale": "es-CL",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-EC-LuisNeural",
+        "FriendlyName": "Microsoft Luis Online (Natural) - Spanish (Ecuador)",
+        "Locale": "es-EC",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CU-ManuelNeural",
+        "FriendlyName": "Microsoft Manuel Online (Natural) - Spanish (Cuba)",
+        "Locale": "es-CU",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-BO-MarceloNeural",
+        "FriendlyName": "Microsoft Marcelo Online (Natural) - Spanish (Bolivia)",
+        "Locale": "es-BO",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PY-MarioNeural",
+        "FriendlyName": "Microsoft Mario Online (Natural) - Spanish (Paraguay)",
+        "Locale": "es-PY",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-UY-MateoNeural",
+        "FriendlyName": "Microsoft Mateo Online (Natural) - Spanish (Uruguay)",
+        "Locale": "es-UY",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PA-RobertoNeural",
+        "FriendlyName": "Microsoft Roberto Online (Natural) - Spanish (Panama)",
+        "Locale": "es-PA",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-SV-RodrigoNeural",
+        "FriendlyName": "Microsoft Rodrigo Online (Natural) - Spanish (El Salvador)",
+        "Locale": "es-SV",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-VE-SebastianNeural",
+        "FriendlyName": "Microsoft Sebastian Online (Natural) - Spanish (Venezuela)",
+        "Locale": "es-VE",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-AR-TomasNeural",
+        "FriendlyName": "Microsoft Tomas Online (Natural) - Spanish (Argentina)",
+        "Locale": "es-AR",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PR-VictorNeural",
+        "FriendlyName": "Microsoft Victor Online (Natural) - Spanish (Puerto Rico)",
+        "Locale": "es-PR",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-ES-XimenaNeural",
+        "FriendlyName": "Microsoft Ximena Online (Natural) - Spanish (Colombia)",
+        "Locale": "es-ES",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-ES-XimenaNeural",
+        "FriendlyName": "Microsoft Ximena Online (Natural) - Spanish (Colombia)",
+        "Locale": "es-ES",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "en-US-AvaMultilingualNeural",
+        "FriendlyName": "Microsoft AvaMultilingual Online (Natural) - English (United States)",
+        "Locale": "en-US",
+        "Gender": "Female",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "en-US-EmmaMultilingualNeural",
+        "FriendlyName": "Microsoft EmmaMultilingual Online (Natural) - English (United States)",
+        "Locale": "en-US",
+        "Gender": "Female",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "fr-FR-VivienneMultilingualNeural",
+        "FriendlyName": "Microsoft VivienneMultilingual Online (Natural) - French (France)",
+        "Locale": "fr-FR",
+        "Gender": "Female",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-EC-AndreaNeural",
+        "FriendlyName": "Microsoft Andrea Online (Natural) - Spanish (Ecuador)",
+        "Locale": "es-EC",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CU-BelkysNeural",
+        "FriendlyName": "Microsoft Belkys Online (Natural) - Spanish (Cuba)",
+        "Locale": "es-CU",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PE-CamilaNeural",
+        "FriendlyName": "Microsoft Camila Online (Natural) - Spanish (Peru)",
+        "Locale": "es-PE",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CL-CatalinaNeural",
+        "FriendlyName": "Microsoft Catalina Online (Natural) - Spanish (Chile)",
+        "Locale": "es-CL",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-MX-DaliaNeural",
+        "FriendlyName": "Microsoft Dalia Online (Natural) - Spanish (Mexico)",
+        "Locale": "es-MX",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-AR-ElenaNeural",
+        "FriendlyName": "Microsoft Elena Online (Natural) - Spanish (Argentina)",
+        "Locale": "es-AR",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-ES-ElviraNeural",
+        "FriendlyName": "Microsoft Elvira Online (Natural) - Spanish (Spain)",
+        "Locale": "es-ES",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PR-KarinaNeural",
+        "FriendlyName": "Microsoft Karina Online (Natural) - Spanish (Puerto Rico)",
+        "Locale": "es-PR",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-HN-KarlaNeural",
+        "FriendlyName": "Microsoft Karla Online (Natural) - Spanish (Honduras)",
+        "Locale": "es-HN",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-SV-LorenaNeural",
+        "FriendlyName": "Microsoft Lorena Online (Natural) - Spanish (El Salvador)",
+        "Locale": "es-SV",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PA-MargaritaNeural",
+        "FriendlyName": "Microsoft Margarita Online (Natural) - Spanish (Panama)",
+        "Locale": "es-PA",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CR-MariaNeural",
+        "FriendlyName": "Microsoft Maria Online (Natural) - Spanish (Costa Rica)",
+        "Locale": "es-CR",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-GT-MartaNeural",
+        "FriendlyName": "Microsoft Marta Online (Natural) - Spanish (Guatemala)",
+        "Locale": "es-GT",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-US-PalomaNeural",
+        "FriendlyName": "Microsoft Paloma Online (Natural) - Spanish (United States)",
+        "Locale": "es-US",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-VE-PaolaNeural",
+        "FriendlyName": "Microsoft Paola Online (Natural) - Spanish (Venezuela)",
+        "Locale": "es-VE",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-DO-RamonaNeural",
+        "FriendlyName": "Microsoft Ramona Online (Natural) - Spanish (Dominican Republic)",
+        "Locale": "es-DO",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CO-SalomeNeural",
+        "FriendlyName": "Microsoft Salome Online (Natural) - Spanish (Colombia)",
+        "Locale": "es-CO",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-BO-SofiaNeural",
+        "FriendlyName": "Microsoft Sofia Online (Natural) - Spanish (Bolivia)",
+        "Locale": "es-BO",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PY-TaniaNeural",
+        "FriendlyName": "Microsoft Tania Online (Natural) - Spanish (Paraguay)",
+        "Locale": "es-PY",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-GQ-TeresaNeural",
+        "FriendlyName": "Microsoft Teresa Online (Natural) - Spanish (Equatorial Guinea)",
+        "Locale": "es-GQ",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-UY-ValentinaNeural",
+        "FriendlyName": "Microsoft Valentina Online (Natural) - Spanish (Uruguay)",
+        "Locale": "es-UY",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-NI-YolandaNeural",
+        "FriendlyName": "Microsoft Yolanda Online (Natural) - Spanish (Nicaragua)",
+        "Locale": "es-NI",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      }
+    ],
+    "experimental_alt_female": [
+      {
+        "ShortName": "es-ES-XimenaNeural",
+        "FriendlyName": "Microsoft Ximena Online (Natural) - Spanish (Colombia)",
+        "Locale": "es-ES",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "fr-FR-VivienneMultilingualNeural",
+        "FriendlyName": "Microsoft VivienneMultilingual Online (Natural) - French (France)",
+        "Locale": "fr-FR",
+        "Gender": "Female",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "en-US-AvaMultilingualNeural",
+        "FriendlyName": "Microsoft AvaMultilingual Online (Natural) - English (United States)",
+        "Locale": "en-US",
+        "Gender": "Female",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "en-US-EmmaMultilingualNeural",
+        "FriendlyName": "Microsoft EmmaMultilingual Online (Natural) - English (United States)",
+        "Locale": "en-US",
+        "Gender": "Female",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-EC-AndreaNeural",
+        "FriendlyName": "Microsoft Andrea Online (Natural) - Spanish (Ecuador)",
+        "Locale": "es-EC",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CU-BelkysNeural",
+        "FriendlyName": "Microsoft Belkys Online (Natural) - Spanish (Cuba)",
+        "Locale": "es-CU",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PE-CamilaNeural",
+        "FriendlyName": "Microsoft Camila Online (Natural) - Spanish (Peru)",
+        "Locale": "es-PE",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CL-CatalinaNeural",
+        "FriendlyName": "Microsoft Catalina Online (Natural) - Spanish (Chile)",
+        "Locale": "es-CL",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-MX-DaliaNeural",
+        "FriendlyName": "Microsoft Dalia Online (Natural) - Spanish (Mexico)",
+        "Locale": "es-MX",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-AR-ElenaNeural",
+        "FriendlyName": "Microsoft Elena Online (Natural) - Spanish (Argentina)",
+        "Locale": "es-AR",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-ES-ElviraNeural",
+        "FriendlyName": "Microsoft Elvira Online (Natural) - Spanish (Spain)",
+        "Locale": "es-ES",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PR-KarinaNeural",
+        "FriendlyName": "Microsoft Karina Online (Natural) - Spanish (Puerto Rico)",
+        "Locale": "es-PR",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-HN-KarlaNeural",
+        "FriendlyName": "Microsoft Karla Online (Natural) - Spanish (Honduras)",
+        "Locale": "es-HN",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-SV-LorenaNeural",
+        "FriendlyName": "Microsoft Lorena Online (Natural) - Spanish (El Salvador)",
+        "Locale": "es-SV",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PA-MargaritaNeural",
+        "FriendlyName": "Microsoft Margarita Online (Natural) - Spanish (Panama)",
+        "Locale": "es-PA",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CR-MariaNeural",
+        "FriendlyName": "Microsoft Maria Online (Natural) - Spanish (Costa Rica)",
+        "Locale": "es-CR",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-GT-MartaNeural",
+        "FriendlyName": "Microsoft Marta Online (Natural) - Spanish (Guatemala)",
+        "Locale": "es-GT",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-US-PalomaNeural",
+        "FriendlyName": "Microsoft Paloma Online (Natural) - Spanish (United States)",
+        "Locale": "es-US",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-VE-PaolaNeural",
+        "FriendlyName": "Microsoft Paola Online (Natural) - Spanish (Venezuela)",
+        "Locale": "es-VE",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-DO-RamonaNeural",
+        "FriendlyName": "Microsoft Ramona Online (Natural) - Spanish (Dominican Republic)",
+        "Locale": "es-DO",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CO-SalomeNeural",
+        "FriendlyName": "Microsoft Salome Online (Natural) - Spanish (Colombia)",
+        "Locale": "es-CO",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-BO-SofiaNeural",
+        "FriendlyName": "Microsoft Sofia Online (Natural) - Spanish (Bolivia)",
+        "Locale": "es-BO",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PY-TaniaNeural",
+        "FriendlyName": "Microsoft Tania Online (Natural) - Spanish (Paraguay)",
+        "Locale": "es-PY",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-GQ-TeresaNeural",
+        "FriendlyName": "Microsoft Teresa Online (Natural) - Spanish (Equatorial Guinea)",
+        "Locale": "es-GQ",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-UY-ValentinaNeural",
+        "FriendlyName": "Microsoft Valentina Online (Natural) - Spanish (Uruguay)",
+        "Locale": "es-UY",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-NI-YolandaNeural",
+        "FriendlyName": "Microsoft Yolanda Online (Natural) - Spanish (Nicaragua)",
+        "Locale": "es-NI",
+        "Gender": "Female",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      }
+    ],
+    "experimental_alt_male": [
+      {
+        "ShortName": "en-AU-WilliamMultilingualNeural",
+        "FriendlyName": "Microsoft WilliamMultilingual Online (Natural) - English (Australia)",
+        "Locale": "en-AU",
+        "Gender": "Male",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "en-US-AndrewMultilingualNeural",
+        "FriendlyName": "Microsoft AndrewMultilingual Online (Natural) - English (United States)",
+        "Locale": "en-US",
+        "Gender": "Male",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "en-US-BrianMultilingualNeural",
+        "FriendlyName": "Microsoft BrianMultilingual Online (Natural) - English (United States)",
+        "Locale": "en-US",
+        "Gender": "Male",
+        "IsMultilingual": true,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PE-AlexNeural",
+        "FriendlyName": "Microsoft Alex Online (Natural) - Spanish (Peru)",
+        "Locale": "es-PE",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-US-AlonsoNeural",
+        "FriendlyName": "Microsoft Alonso Online (Natural) - Spanish (United States)",
+        "Locale": "es-US",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-ES-AlvaroNeural",
+        "FriendlyName": "Microsoft Alvaro Online (Natural) - Spanish (Spain)",
+        "Locale": "es-ES",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-GT-AndresNeural",
+        "FriendlyName": "Microsoft Andres Online (Natural) - Spanish (Guatemala)",
+        "Locale": "es-GT",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-HN-CarlosNeural",
+        "FriendlyName": "Microsoft Carlos Online (Natural) - Spanish (Honduras)",
+        "Locale": "es-HN",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-DO-EmilioNeural",
+        "FriendlyName": "Microsoft Emilio Online (Natural) - Spanish (Dominican Republic)",
+        "Locale": "es-DO",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-NI-FedericoNeural",
+        "FriendlyName": "Microsoft Federico Online (Natural) - Spanish (Nicaragua)",
+        "Locale": "es-NI",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CO-GonzaloNeural",
+        "FriendlyName": "Microsoft Gonzalo Online (Natural) - Spanish (Colombia)",
+        "Locale": "es-CO",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-GQ-JavierNeural",
+        "FriendlyName": "Microsoft Javier Online (Natural) - Spanish (Equatorial Guinea)",
+        "Locale": "es-GQ",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-MX-JorgeNeural",
+        "FriendlyName": "Microsoft Jorge Online (Natural) - Spanish (Mexico)",
+        "Locale": "es-MX",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CR-JuanNeural",
+        "FriendlyName": "Microsoft Juan Online (Natural) - Spanish (Costa Rica)",
+        "Locale": "es-CR",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CL-LorenzoNeural",
+        "FriendlyName": "Microsoft Lorenzo Online (Natural) - Spanish (Chile)",
+        "Locale": "es-CL",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-EC-LuisNeural",
+        "FriendlyName": "Microsoft Luis Online (Natural) - Spanish (Ecuador)",
+        "Locale": "es-EC",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-CU-ManuelNeural",
+        "FriendlyName": "Microsoft Manuel Online (Natural) - Spanish (Cuba)",
+        "Locale": "es-CU",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-BO-MarceloNeural",
+        "FriendlyName": "Microsoft Marcelo Online (Natural) - Spanish (Bolivia)",
+        "Locale": "es-BO",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PY-MarioNeural",
+        "FriendlyName": "Microsoft Mario Online (Natural) - Spanish (Paraguay)",
+        "Locale": "es-PY",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-UY-MateoNeural",
+        "FriendlyName": "Microsoft Mateo Online (Natural) - Spanish (Uruguay)",
+        "Locale": "es-UY",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PA-RobertoNeural",
+        "FriendlyName": "Microsoft Roberto Online (Natural) - Spanish (Panama)",
+        "Locale": "es-PA",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-SV-RodrigoNeural",
+        "FriendlyName": "Microsoft Rodrigo Online (Natural) - Spanish (El Salvador)",
+        "Locale": "es-SV",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-VE-SebastianNeural",
+        "FriendlyName": "Microsoft Sebastian Online (Natural) - Spanish (Venezuela)",
+        "Locale": "es-VE",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-AR-TomasNeural",
+        "FriendlyName": "Microsoft Tomas Online (Natural) - Spanish (Argentina)",
+        "Locale": "es-AR",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      },
+      {
+        "ShortName": "es-PR-VictorNeural",
+        "FriendlyName": "Microsoft Victor Online (Natural) - Spanish (Puerto Rico)",
+        "Locale": "es-PR",
+        "Gender": "Male",
+        "IsMultilingual": false,
+        "SupportsSpanishRuntime": true
+      }
+    ]
+  }
+}
