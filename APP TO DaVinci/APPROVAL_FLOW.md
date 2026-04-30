@@ -24,8 +24,15 @@ Un prompt de tipo:
    - `run-init-production-brief.ps1 -Project "<Nombre carpeta en FINALS PROJECTS>"`
 2. Entrar en modo plan.
 3. Lanzar preguntas guiadas con `ask_user`, una por vez.
-4. Completar `00-admin\production-brief.json`.
-5. Pasar a implementación final en Resolve solo cuando el brief esté completo.
+4. Usar `00-admin\guided-brief-questionnaire.json` como estado persistente del cuestionario.
+5. Completar `00-admin\production-brief.json`.
+6. Pasar a implementación final en Resolve solo cuando el brief esté completo.
+
+## Señales operativas del brief
+
+- Mientras el brief tenga preguntas pendientes, `production-brief.json` queda en estado `awaiting_guided_questions`.
+- Cuando el brief ya está completo, el estado pasa a `approved_brief` y `implementation_state.ready_for_render_plan = true`.
+- `run-generate-prompt-catalog.ps1` debe recomendar `Continua con el briefing guiado del proyecto <Nombre>` mientras queden preguntas por responder.
 
 ## Fase posterior al brief aprobado
 
@@ -77,10 +84,29 @@ Esto encadena:
 1. refresco del catálogo de voces;
 2. reaplicación del brief para regenerar `voice-plan.json`;
 3. regeneración de audio del episodio;
-4. refresco del pool stock online;
-5. regeneración del plan semántico;
-6. source master;
-7. render final en DaVinci Resolve.
+4. refresco del pool stock online con `SciClip + puente semántico local`;
+5. regeneración del plan semántico y del perfil dinámico de stock del episodio;
+6. importación del pool completo y de los assets narrativos en DaVinci Resolve;
+7. selección visual, orden de timeline, textos, look, color, transiciones y FX dentro de Resolve usando el brief;
+8. render final en DaVinci Resolve.
+
+## Política global de runtime visual
+
+El motor queda fijado globalmente en modo:
+
+- `visual_assembly_mode = resolve-first`
+- `stock_acquisition_mode = sciclip-semantic-bridge`
+- `stock_selection_stage = resolve-assembly`
+- `stock_profile_mode = dynamic-per-episode`
+- `stock_download_format = 1920x1080-16:9`
+- `ffmpeg_role = audio-only-support`
+
+Esto debe aplicarse igual a proyectos nuevos, ejecuciones por episodio y regeneraciones completas. El brief actúa como autoridad sobre:
+
+- formato y sistema de textos;
+- dirección visual y estilo cinematográfico;
+- transiciones y densidad de FX;
+- color, contraste, textura y entrega final.
 
 ## Nota de publicación
 

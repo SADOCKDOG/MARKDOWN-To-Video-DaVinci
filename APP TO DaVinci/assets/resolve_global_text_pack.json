@@ -1,0 +1,91 @@
+{
+  "pack_name": "Copilot SciFi ES",
+  "folder_name": "Copilot SciFi ES",
+  "description": "Pack global user-scope de titulos Fusion reutilizables para proyectos cientifico-futuristas en espanol.",
+  "templates": [
+    {
+      "family": "title_cards",
+      "file_name": "Copilot SciFi ES - Title Cards.setting",
+      "display_name": "Title Cards",
+      "style_notes": "centrado, grande, limpio, con jerarquia fuerte para aperturas y bloques editoriales",
+      "layers": [
+        {
+          "node_name": "MainTitle",
+          "text": "TITULO PRINCIPAL",
+          "font": "Arial",
+          "size": 0.12,
+          "center": [
+            0.5,
+            0.39
+          ]
+        },
+        {
+          "node_name": "SubTitle",
+          "text": "Subtitulo editorial",
+          "font": "Arial",
+          "size": 0.045,
+          "center": [
+            0.5,
+            0.49
+          ]
+        }
+      ]
+    },
+    {
+      "family": "lower_thirds",
+      "file_name": "Copilot SciFi ES - Lower Third.setting",
+      "display_name": "Lower Third",
+      "style_notes": "modular, esquina inferior izquierda, jerarquia institucional sobria",
+      "layers": [
+        {
+          "node_name": "NameLine",
+          "text": "Nombre o institucion",
+          "font": "Arial",
+          "size": 0.06,
+          "center": [
+            0.29,
+            0.83
+          ]
+        },
+        {
+          "node_name": "RoleLine",
+          "text": "Cargo, concepto o referencia",
+          "font": "Arial",
+          "size": 0.032,
+          "center": [
+            0.31,
+            0.89
+          ]
+        }
+      ]
+    },
+    {
+      "family": "documentary_overlays",
+      "file_name": "Copilot SciFi ES - Documentary Overlay.setting",
+      "display_name": "Documentary Overlay",
+      "style_notes": "overlay documental discreto para labels tecnicos y contexto sin saturar la imagen",
+      "layers": [
+        {
+          "node_name": "OverlayLabel",
+          "text": "Referencia documental",
+          "font": "Arial",
+          "size": 0.038,
+          "center": [
+            0.2,
+            0.13
+          ]
+        },
+        {
+          "node_name": "OverlayDetail",
+          "text": "Dato de apoyo o contexto visual",
+          "font": "Arial",
+          "size": 0.028,
+          "center": [
+            0.23,
+            0.18
+          ]
+        }
+      ]
+    }
+  ]
+}

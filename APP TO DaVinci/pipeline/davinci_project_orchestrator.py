@@ -1,5 +1,6 @@
 import argparse
 import json
+import math
 import re
 import shutil
 from datetime import datetime, timezone
@@ -67,6 +68,21 @@ VOICE_CATALOG_ASSETS = [
     "microsoft_spanish_voice_roles.json",
 ]
 
+DEFAULT_SOURCE_EPISODES = [
+    "Episodio 01 - Vida espejo y quiralidad",
+    "Episodio 02 - IA espejo",
+    "Episodio 03 - Humano aumentado y exocórtex",
+    "Episodio 04 - Átomos, emergencia y consciencia",
+    "Episodio 05 - Antimateria y universos espejo",
+    "Episodio 06 - Agujeros negros, agujeros blancos y rebote cosmológico",
+    "Episodio 07 - Información, lenguaje y código del universo",
+    "Episodio 08 - Tecno-sapiens",
+    "Episodio 09 - Geopolítica del cómputo",
+    "Episodio 10 - Espejo cognitivo y astronomía interior",
+]
+
+SPEAKER_MARKER = re.compile(r"^\\--\s*(.+?)\s*--\s*$")
+
 
 def load_settings(root_dir: Path) -> dict:
     settings_path = root_dir / "APP TO DaVinci" / "config" / "pipeline-settings.json"
@@ -77,6 +93,16 @@ def resolve_setting_path(root_dir: Path, setting_value: str, fallback_relative: 
     value = (setting_value or fallback_relative).strip()
     path = Path(value)
     return path if path.is_absolute() else root_dir / path
+
+
+def write_text(path: Path, content: str):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8")
+
+
+def write_json(path: Path, payload: dict | list):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def detect_active_markdown(root_dir: Path) -> Path:
@@ -99,6 +125,39 @@ def derive_series_title(markdown_path: Path) -> str:
     if len(parts) >= 2:
         return parts[0]
     return stem
+
+
+def derive_markdown_theme(markdown_path: Path, series_title: str) -> str:
+    stem = markdown_path.stem.strip()
+    parts = [part.strip() for part in re.split(r"\s+-\s+", stem) if part.strip()]
+    if len(parts) >= 2:
+        return normalize_inline_text(" - ".join(parts[1:]))
+    return series_title
+
+
+def normalize_inline_text(text: str) -> str:
+    return re.sub(r"\s+", " ", text or "").strip()
+
+
+def normalize_block_text(text: str) -> str:
+    normalized_lines = [line.rstrip() for line in (text or "").splitlines()]
+    return re.sub(r"\n{3,}", "\n\n", "\n".join(normalized_lines).strip())
+
+
+def summarize_prompt(text: str, index: int) -> str:
+    base = normalize_inline_text((text or "").replace("\n", " "))
+    if not base:
+        return f"Bloque {index:02}"
+    parts = re.split(r"[?!\.]", base, maxsplit=1)
+    candidate = parts[0].strip(" ¿?¡!.,:;")
+    if not candidate:
+        candidate = base.strip(" ¿?¡!.,:;")
+    words = candidate.split()
+    if len(words) > 8:
+        candidate = " ".join(words[:8])
+    if not candidate:
+        return f"Bloque {index:02}"
+    return candidate[0].upper() + candidate[1:]
 
 
 def safe_copy(source: Path, target: Path):
@@ -180,6 +239,171 @@ def discover_legacy_episodes(series_title: str, settings: dict, root_dir: Path) 
     return episodes
 
 
+def parse_dialogue_turns(markdown_path: Path) -> list[dict]:
+    turns: list[dict] = []
+    current_speaker = ""
+    current_lines: list[str] = []
+
+    def flush():
+        nonlocal current_speaker, current_lines
+        content = normalize_block_text("\n".join(current_lines))
+        if current_speaker and content:
+            turns.append({"speaker": current_speaker, "content": content})
+        current_lines = []
+
+    for raw_line in markdown_path.read_text(encoding="utf-8").splitlines():
+        match = SPEAKER_MARKER.match(raw_line.strip())
+        if match:
+            flush()
+            current_speaker = normalize_inline_text(match.group(1))
+            continue
+        current_lines.append(raw_line)
+    flush()
+    return turns
+
+
+def build_source_exchanges(markdown_path: Path) -> list[dict]:
+    turns = parse_dialogue_turns(markdown_path)
+    if not turns:
+        body = normalize_block_text(markdown_path.read_text(encoding="utf-8"))
+        return [{"prompt": markdown_path.stem, "response": body}]
+
+    exchanges: list[dict] = []
+    current_prompt = ""
+    current_response: list[str] = []
+
+    def flush():
+        nonlocal current_prompt, current_response
+        if current_prompt or current_response:
+            exchanges.append(
+                {
+                    "prompt": normalize_block_text(current_prompt),
+                    "response": normalize_block_text("\n\n".join(part for part in current_response if part.strip())),
+                }
+            )
+        current_prompt = ""
+        current_response = []
+
+    for turn in turns:
+        speaker = normalize_inline_text(turn["speaker"]).lower()
+        content = normalize_block_text(turn["content"])
+        if not content:
+            continue
+        if "david" in speaker:
+            if current_prompt or current_response:
+                flush()
+            current_prompt = content
+        elif "gemini" in speaker:
+            if current_prompt:
+                current_response.append(content)
+        elif current_prompt:
+            current_response.append(content)
+
+    flush()
+    return [exchange for exchange in exchanges if exchange["prompt"] or exchange["response"]]
+
+
+def derive_episode_titles(exchange_count: int, markdown_path: Path, series_title: str) -> list[str]:
+    if exchange_count <= 1:
+        theme = derive_markdown_theme(markdown_path, series_title)
+        return [f"Episodio 01 - {theme}"]
+    desired = max(1, min(len(DEFAULT_SOURCE_EPISODES), math.ceil(exchange_count / 9)))
+    return DEFAULT_SOURCE_EPISODES[:desired]
+
+
+def chunk_source_exchanges(exchanges: list[dict], episode_titles: list[str]) -> list[tuple[str, list[dict]]]:
+    if not exchanges:
+        return []
+    chunk_size = math.ceil(len(exchanges) / len(episode_titles))
+    chunks: list[tuple[str, list[dict]]] = []
+    for index, episode_title in enumerate(episode_titles):
+        start = index * chunk_size
+        end = min(len(exchanges), (index + 1) * chunk_size)
+        if start >= len(exchanges):
+            break
+        chunk = exchanges[start:end]
+        if chunk:
+            chunks.append((episode_title, chunk))
+    return chunks
+
+
+def build_episode_script(episode_name: str, source_markdown_name: str, exchanges: list[dict]) -> tuple[str, list[str]]:
+    headings: list[str] = []
+    lines = [
+        f"# {episode_name}",
+        "",
+        f"> Fuente editorial: `{source_markdown_name}`",
+        "",
+    ]
+    for index, exchange in enumerate(exchanges, start=1):
+        heading = summarize_prompt(exchange["prompt"], index)
+        headings.append(heading)
+        lines.extend([f"## {heading}", ""])
+        if exchange["prompt"]:
+            lines.extend([f"Pregunta detonante: {exchange['prompt']}", ""])
+        body = exchange["response"] or exchange["prompt"]
+        if body:
+            lines.extend([body, ""])
+    return "\n".join(lines).strip() + "\n", headings
+
+
+def build_edit_manifest(episode_name: str, headings: list[str]) -> str:
+    lines = [
+        f"# Edit manifest - {episode_name}",
+        "",
+        "## Bloques narrativos",
+        "",
+    ]
+    for index, heading in enumerate(headings, start=1):
+        lines.append(f"{index}. {heading}")
+    return "\n".join(lines).strip() + "\n"
+
+
+def seed_episode_from_source(
+    markdown_path: Path,
+    target_episode_dir: Path,
+    episode_name: str,
+    exchanges: list[dict],
+) -> dict:
+    script_content, headings = build_episode_script(episode_name, markdown_path.name, exchanges)
+    outline_md = "\n".join(f"- {heading}" for heading in headings).strip() + ("\n" if headings else "")
+    edit_manifest = build_edit_manifest(episode_name, headings)
+
+    write_text(target_episode_dir / f"{episode_name}.md", script_content)
+    write_text(target_episode_dir / "script" / f"{episode_name}.md", script_content)
+    write_text(target_episode_dir / "videos" / "on-screen-text-es.md", outline_md)
+    write_text(target_episode_dir / "graphics" / "on-screen-text-es.md", outline_md)
+    write_text(target_episode_dir / "videos" / "edit-manifest.md", edit_manifest)
+    write_text(target_episode_dir / "graphics" / "edit-manifest.md", edit_manifest)
+
+    manifest = {
+        "episode": episode_name,
+        "legacy_source": str(target_episode_dir),
+        "source_type": "generated_from_source_markdown",
+        "source_markdown": str(markdown_path),
+        "script_path": str(target_episode_dir / "script" / f"{episode_name}.md"),
+        "headings_path": str(target_episode_dir / "graphics" / "on-screen-text-es.md"),
+        "block_count": len(headings),
+        "media_copied": False,
+        "generated_utc": datetime.now(timezone.utc).isoformat(),
+    }
+    write_json(target_episode_dir / "script" / "episode-manifest.json", manifest)
+    return manifest
+
+
+def seed_episodes_from_source(markdown_path: Path, project_dir: Path, series_title: str) -> list[dict]:
+    exchanges = build_source_exchanges(markdown_path)
+    if not exchanges:
+        return []
+
+    seeded_episodes: list[dict] = []
+    episode_titles = derive_episode_titles(len(exchanges), markdown_path, series_title)
+    for episode_name, chunk in chunk_source_exchanges(exchanges, episode_titles):
+        episode_dir = create_episode_structure(project_dir, episode_name)
+        seeded_episodes.append(seed_episode_from_source(markdown_path, episode_dir, episode_name, chunk))
+    return seeded_episodes
+
+
 def seed_episode_from_legacy(source_episode_dir: Path, target_episode_dir: Path):
     copied = []
     for source_pattern, target_pattern in LIGHTWEIGHT_COPY_RULES:
@@ -199,6 +423,35 @@ def seed_episode_from_legacy(source_episode_dir: Path, target_episode_dir: Path)
         encoding="utf-8",
     )
     return manifest
+
+
+def write_series_outline(project_dir: Path, source_markdown_name: str, seeded_episodes: list[dict]):
+    outline_dir = project_dir / "02-series-outline"
+    outline_dir.mkdir(parents=True, exist_ok=True)
+    write_text(outline_dir / "series-source-reference.txt", f"{source_markdown_name}\n")
+
+    markdown_lines = [
+        "# Outline de serie",
+        "",
+        f"- Fuente editorial: `{source_markdown_name}`",
+        f"- Episodios materializados: `{len(seeded_episodes)}`",
+        "",
+        "| Episodio | Tipo de fuente | Bloques |",
+        "|---|---|---:|",
+    ]
+    for episode in seeded_episodes:
+        markdown_lines.append(
+            f"| {episode['episode']} | {episode.get('source_type', 'legacy_seed')} | {episode.get('block_count', 0)} |"
+        )
+    write_text(outline_dir / "series-outline.md", "\n".join(markdown_lines) + "\n")
+    write_json(
+        outline_dir / "series-outline.json",
+        {
+            "source_markdown_name": source_markdown_name,
+            "episode_count": len(seeded_episodes),
+            "episodes": seeded_episodes,
+        },
+    )
 
 
 def write_project_manifest(
@@ -250,6 +503,7 @@ def write_project_readme(project_dir: Path, active_markdown: Path, series_title:
             "- Un solo markdown activo por ejecución.",
             "- La app reusable vive en `APP TO DaVinci`.",
             "- Los artefactos del proyecto viven solo dentro de esta carpeta de `FINALS PROJECTS`.",
+            "- El siguiente paso recomendado se obtiene desde `00-admin\\prompt-catalog.md`.",
         ]
     )
     (project_dir / "00-admin" / "README.md").write_text(content + "\n", encoding="utf-8")
@@ -277,9 +531,12 @@ def main():
     seed_shared_assets(project_dir, settings, root_dir)
 
     seeded_episodes = []
-    for legacy_episode_dir in discover_legacy_episodes(series_title, settings, root_dir):
+    legacy_episodes = discover_legacy_episodes(series_title, settings, root_dir)
+    for legacy_episode_dir in legacy_episodes:
         episode_dir = create_episode_structure(project_dir, legacy_episode_dir.name)
         seeded_episodes.append(seed_episode_from_legacy(legacy_episode_dir, episode_dir))
+    if not seeded_episodes:
+        seeded_episodes = seed_episodes_from_source(markdown_target, project_dir, series_title)
 
     write_project_manifest(
         project_dir,
@@ -290,13 +547,7 @@ def main():
         seeded_episodes,
     )
     write_project_readme(project_dir, markdown_target, series_title)
-
-    outline_dir = project_dir / "02-series-outline"
-    outline_dir.mkdir(parents=True, exist_ok=True)
-    (outline_dir / "series-source-reference.txt").write_text(
-        f"{markdown_target.name}\n",
-        encoding="utf-8",
-    )
+    write_series_outline(project_dir, markdown_target.name, seeded_episodes)
 
     resolve_dir = project_dir / "05-resolve"
     resolve_dir.mkdir(parents=True, exist_ok=True)

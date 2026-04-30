@@ -2,9 +2,9 @@ param(
     [string]$Episode,
     [switch]$All,
     [switch]$DryRun,
-    [int]$Clips = 36,
-    [int]$QueryLimit = 24,
-    [int]$PerSource = 6,
+    [int]$Clips = 0,
+    [int]$QueryLimit = 0,
+    [int]$PerSource = 0,
     [string]$Sources = "pexels_v,pixabay_v,nasa_v,nasa_svs,archive_v,coverr,wikimedia_v",
     [string]$ProjectRoot = ""
 )
@@ -17,7 +17,16 @@ if ($ProjectRoot) {
     $env:VIDA_ESPEJO_ROOT = $ProjectRoot
 }
 
-$argsList = @($pythonScript, "--sources", $Sources, "--clips", "$Clips", "--query-limit", "$QueryLimit", "--per-source", "$PerSource")
+$argsList = @($pythonScript, "--sources", $Sources)
+if ($Clips -gt 0) {
+    $argsList += @("--clips", "$Clips")
+}
+if ($QueryLimit -gt 0) {
+    $argsList += @("--query-limit", "$QueryLimit")
+}
+if ($PerSource -gt 0) {
+    $argsList += @("--per-source", "$PerSource")
+}
 if ($All) {
     $argsList += "--all"
 } elseif ($Episode) {

@@ -3,6 +3,8 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
+from production_brief_workflow import sync_brief_files
+
 
 def load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
@@ -19,6 +21,12 @@ def write_markdown(path: Path, payload: dict):
         "",
         f"- Estado del proyecto: `{payload['project_state']}`",
         f"- Prompt recomendado ahora: `{payload['recommended_prompt']}`",
+    ]
+    if payload.get("next_question_prompt"):
+        lines.append(f"- Siguiente pregunta guiada: `{payload['next_question_prompt']}`")
+    if payload.get("questionnaire_reference"):
+        lines.append(f"- Cuestionario guiado: `{payload['questionnaire_reference']}`")
+    lines += [
         "",
         "| Tipo | Estado | Prompt | Cuándo usarlo |",
         "|---|---|---|---|",
@@ -32,8 +40,13 @@ def write_markdown(path: Path, payload: dict):
 
 def build_catalog(project: str, manifest: dict, brief: dict, runtime: dict) -> dict:
     state = []
+    guided_brief = brief.get("guided_brief", {})
+    next_question_id = guided_brief.get("next_question_id", "")
+    next_question = next((item for item in guided_brief.get("questions", []) if item.get("id") == next_question_id), None)
     if manifest:
         state.append("project_materialized")
+    if brief.get("brief_status") == "awaiting_guided_questions":
+        state.append("brief_in_progress")
     if brief.get("brief_status") == "approved_brief":
         state.append("brief_approved")
     if brief.get("implementation_state", {}).get("runtime_generated"):
@@ -51,6 +64,12 @@ def build_catalog(project: str, manifest: dict, brief: dict, runtime: dict) -> d
             "status": "available" if manifest else "not_ready",
             "prompt": f"Entregables del proyecto {project} verificado y aprobado, procede a generarlos a traves de un plan",
             "when_to_use": "Para abrir el briefing creativo global del proyecto una vez revisados los entregables.",
+        },
+        {
+            "kind": "continue_guided_brief",
+            "status": "available" if brief.get("brief_status") == "awaiting_guided_questions" else "not_ready",
+            "prompt": f"Continua con el briefing guiado del proyecto {project}",
+            "when_to_use": "Para retomar las preguntas pendientes y completar production-brief.json una decision cada vez.",
         },
         {
             "kind": "approve_runtime",
@@ -79,8 +98,10 @@ def build_catalog(project: str, manifest: dict, brief: dict, runtime: dict) -> d
     ]
 
     if runtime:
-        recommended = prompts[3]["prompt"]
+        recommended = prompts[4]["prompt"]
     elif brief.get("brief_status") == "approved_brief":
+        recommended = prompts[3]["prompt"]
+    elif brief.get("brief_status") == "awaiting_guided_questions":
         recommended = prompts[2]["prompt"]
     elif manifest:
         recommended = prompts[1]["prompt"]
@@ -91,6 +112,8 @@ def build_catalog(project: str, manifest: dict, brief: dict, runtime: dict) -> d
         "project": project,
         "project_state": ",".join(state) if state else "bootstrap_pending",
         "recommended_prompt": recommended,
+        "next_question_prompt": next_question["prompt"] if next_question else "",
+        "questionnaire_reference": guided_brief.get("questionnaire_reference", ""),
         "available_prompts": prompts,
         "generated_utc": datetime.now(timezone.utc).isoformat(),
     }
@@ -108,6 +131,9 @@ def main():
 
     manifest = load_json(admin_dir / "project-manifest.json") if (admin_dir / "project-manifest.json").exists() else {}
     brief = load_json(admin_dir / "production-brief.json") if (admin_dir / "production-brief.json").exists() else {}
+    if brief:
+        brief, _ = sync_brief_files(project_dir, args.project, brief)
+        write_json(admin_dir / "production-brief.json", brief)
     runtime = load_json(admin_dir / "production-runtime.json") if (admin_dir / "production-runtime.json").exists() else {}
 
     catalog = build_catalog(args.project, manifest, brief, runtime)

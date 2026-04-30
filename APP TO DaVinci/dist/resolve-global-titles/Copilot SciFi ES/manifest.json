@@ -1,0 +1,29 @@
+{
+  "pack_name": "Copilot SciFi ES",
+  "folder_name": "Copilot SciFi ES",
+  "description": "Pack global user-scope de titulos Fusion reutilizables para proyectos cientifico-futuristas en espanol.",
+  "generated_at_utc": "2026-04-30T03:42:04.612077+00:00",
+  "templates": [
+    {
+      "family": "title_cards",
+      "file_name": "Copilot SciFi ES - Title Cards.setting",
+      "display_name": "Title Cards",
+      "style_notes": "centrado, grande, limpio, con jerarquia fuerte para aperturas y bloques editoriales",
+      "relative_path": "Copilot SciFi ES\\Copilot SciFi ES - Title Cards.setting"
+    },
+    {
+      "family": "lower_thirds",
+      "file_name": "Copilot SciFi ES - Lower Third.setting",
+      "display_name": "Lower Third",
+      "style_notes": "modular, esquina inferior izquierda, jerarquia institucional sobria",
+      "relative_path": "Copilot SciFi ES\\Copilot SciFi ES - Lower Third.setting"
+    },
+    {
+      "family": "documentary_overlays",
+      "file_name": "Copilot SciFi ES - Documentary Overlay.setting",
+      "display_name": "Documentary Overlay",
+      "style_notes": "overlay documental discreto para labels tecnicos y contexto sin saturar la imagen",
+      "relative_path": "Copilot SciFi ES\\Copilot SciFi ES - Documentary Overlay.setting"
+    }
+  ]
+}

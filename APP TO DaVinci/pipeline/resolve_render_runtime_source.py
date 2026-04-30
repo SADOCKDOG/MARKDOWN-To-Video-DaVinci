@@ -1,5 +1,6 @@
 import argparse
 import json
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -58,16 +59,50 @@ def codec_tuple(render_settings: dict) -> tuple[str, str]:
     return "mov", "ProRes"
 
 
+def probe_duration(path: Path) -> float:
+    result = subprocess.run(
+        [
+            "ffprobe",
+            "-v",
+            "error",
+            "-show_entries",
+            "format=duration",
+            "-of",
+            "default=noprint_wrappers=1:nokey=1",
+            str(path),
+        ],
+        check=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+    )
+    return float(result.stdout.strip())
+
+
+def collect_timeline_bounds(timeline) -> tuple[int, int]:
+    starts: list[int] = []
+    ends: list[int] = []
+    for track_type in ["video", "audio"]:
+        track_count = int(timeline.GetTrackCount(track_type) or 0)
+        for track_index in range(1, track_count + 1):
+            items = timeline.GetItemListInTrack(track_type, track_index) or []
+            for item in items:
+                starts.append(int(item.GetStart()))
+                ends.append(int(item.GetEnd()))
+    if not ends:
+        fail("La timeline ensamblada no contiene items renderizables.")
+    return min(starts or [0]), max(ends)
+
+
 def main():
-    parser = argparse.ArgumentParser(description="Render final desde Resolve usando el master fuente del runtime.")
+    parser = argparse.ArgumentParser(description="Render final desde Resolve usando la timeline ensamblada del runtime.")
     parser.add_argument("--execution-plan", type=Path, required=True)
     args = parser.parse_args()
 
     plan = load_json(args.execution_plan)
-    episode_name = plan["episode"]
     render_settings = plan["render_settings"]
+    assembly = plan["resolve_assembly"]
     path_keys = {
-        "source_output",
         "final_output",
         "delivery_dir",
         "resolve_output_dir",
@@ -75,28 +110,23 @@ def main():
         "resolve_style_guide",
     }
     paths = {k: Path(v) for k, v in plan["paths"].items() if k in path_keys}
-    source_clip = paths["source_output"]
     output_path = paths["final_output"]
     output_path.parent.mkdir(parents=True, exist_ok=True)
+    if output_path.exists():
+        output_path.unlink()
 
     resolve = load_resolve()
     pm = resolve.GetProjectManager()
-    project_name = f"{render_settings['project_name']} - Runtime Final - {episode_name}"
-    timeline_name = f"{episode_name} - runtime-final-render"
+    project_name = assembly["project_name"]
+    timeline_name = assembly["timeline_name"]
     project = find_or_create_project(pm, project_name)
-    media_pool = project.GetMediaPool()
-
-    imported = media_pool.ImportMedia([str(source_clip)])
-    if not imported:
-        fail("No se pudo importar el clip fuente a Resolve.")
-    item = imported[0]
 
     timeline = find_timeline(project, timeline_name)
     if timeline is None:
-        timeline = media_pool.CreateTimelineFromClips(timeline_name, [item])
-        if timeline is None:
-            fail("No se pudo crear la timeline desde el clip fuente.")
+        fail(f"No se encontró la timeline ensamblada: {timeline_name}")
     project.SetCurrentTimeline(timeline)
+    mark_in, mark_out_exclusive = collect_timeline_bounds(timeline)
+    mark_out = max(mark_in, mark_out_exclusive - 1)
 
     fmt, codec = codec_tuple(render_settings)
     preset_loaded = project.LoadRenderPreset("H.264 Master") if fmt == "mp4" and codec == "H264" else True
@@ -105,6 +135,8 @@ def main():
     project.SetCurrentRenderFormatAndCodec(fmt, codec)
     settings = {
         "SelectAllFrames": True,
+        "MarkIn": mark_in,
+        "MarkOut": mark_out,
         "TargetDir": str(output_path.parent),
         "CustomName": output_path.stem,
     }
@@ -120,6 +152,13 @@ def main():
         time.sleep(5)
     if not output_path.exists():
         fail(f"No apareció el render final esperado: {output_path}")
+    output_duration = probe_duration(output_path)
+    expected_duration = probe_duration(Path(plan["paths"]["narration_audio"]))
+    if output_duration < max(30.0, expected_duration * 0.9):
+        fail(
+            "El render final salió truncado. "
+            f"Duración esperada aprox={expected_duration:.2f}s, salida={output_duration:.2f}s"
+        )
     print(f"PROJECT={project_name}|TIMELINE={timeline_name}|OUTPUT={output_path}")
 
 

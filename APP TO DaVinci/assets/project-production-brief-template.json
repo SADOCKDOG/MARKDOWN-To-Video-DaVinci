@@ -43,9 +43,27 @@
     "delivery_codec": "",
     "delivery_target": ""
   },
+  "global_runtime_policy": {
+    "visual_assembly_mode": "resolve-first",
+    "stock_acquisition_mode": "sciclip-semantic-bridge",
+    "stock_selection_stage": "resolve-assembly",
+    "stock_profile_mode": "dynamic-per-episode",
+    "stock_download_format": "1920x1080-16:9",
+    "brief_authority": "davinci-uses-brief-controls",
+    "ffmpeg_role": "audio-only-support"
+  },
   "implementation_state": {
     "brief_completed": false,
     "ready_for_render_plan": false,
     "last_updated_utc": ""
+  },
+  "guided_brief": {
+    "total_questions": 0,
+    "answered_questions": 0,
+    "pending_question_ids": [],
+    "next_question_id": "",
+    "questionnaire_reference": "",
+    "last_synced_utc": "",
+    "questions": []
   }
 }

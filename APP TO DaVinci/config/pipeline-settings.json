@@ -6,5 +6,19 @@
   "production_brief_template": "APP TO DaVinci\\assets\\project-production-brief-template.json",
   "production_brief_filename": "production-brief.json",
   "single_active_markdown": true,
-  "include_media_by_default": false
+  "include_media_by_default": false,
+  "global_runtime_policy": {
+    "visual_assembly_mode": "resolve-first",
+    "stock_acquisition_mode": "sciclip-semantic-bridge",
+    "stock_selection_stage": "resolve-assembly",
+    "stock_profile_mode": "dynamic-per-episode",
+    "stock_download_format": "1920x1080-16:9",
+    "brief_authority": "davinci-uses-brief-controls",
+    "ffmpeg_role": "audio-only-support",
+    "applies_to": [
+      "new-projects",
+      "episode-runs",
+      "full-episode-regeneration"
+    ]
+  }
 }

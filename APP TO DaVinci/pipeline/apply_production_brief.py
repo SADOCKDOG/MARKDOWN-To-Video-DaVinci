@@ -4,6 +4,8 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
+from production_brief_workflow import sync_brief_files
+
 
 RESOLUTION_MAP = {
     "1080p Full HD": {"width": 1920, "height": 1080, "fps": 24},
@@ -41,7 +43,13 @@ def choose_voice(voice_roles: dict, role_key: str, requested_label: str) -> dict
     if not options:
         raise SystemExit(f"No hay opciones de voz para el rol {role_key}")
 
-    requested = requested_label.lower()
+    requested = requested_label.strip().lower()
+    for option in options:
+        short_name = option.get("ShortName", "").strip().lower()
+        friendly_name = option.get("FriendlyName", "").strip().lower()
+        if requested and requested in {short_name, friendly_name}:
+            return option
+
     prefer_male = requested.startswith("male")
     prefer_female = requested.startswith("female")
     if prefer_male:
@@ -129,6 +137,8 @@ def main():
     resolve_dir = project_dir / "05-resolve"
 
     brief = load_json(admin_dir / "production-brief.json")
+    brief, _ = sync_brief_files(project_dir, args.project, brief)
+    write_json(admin_dir / "production-brief.json", brief)
     if not brief["implementation_state"]["ready_for_render_plan"]:
         raise SystemExit("El production-brief todavía no está listo para convertirlo en runtime.")
 
@@ -148,7 +158,7 @@ def main():
         "voice_plan_reference": str(shared_dir / "voice-plan.json"),
         "resolve_render_reference": str(resolve_dir / "resolve-render-settings.json"),
         "visual_style_reference": str(resolve_dir / "resolve-style-guide.json"),
-        "episode_count": project_manifest["episode_count_seeded"],
+        "episode_count": project_manifest.get("episode_count_seeded", len(project_manifest.get("episodes", []))),
         "generated_utc": datetime.now(timezone.utc).isoformat(),
     }
 

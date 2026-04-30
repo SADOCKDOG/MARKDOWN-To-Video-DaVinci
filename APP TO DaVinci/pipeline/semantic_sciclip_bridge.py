@@ -40,6 +40,10 @@ except ModuleNotFoundError:  # pragma: no cover
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
 DEFAULT_SOURCES = ["pexels_v", "pixabay_v", "nasa_v", "nasa_svs", "archive_v", "coverr", "wikimedia_v"]
 MP4_SOURCES = {"pexels_v", "pixabay_v", "nasa_v", "nasa_svs", "archive_v", "coverr"}
+TARGET_STOCK_WIDTH = 1920
+TARGET_STOCK_HEIGHT = 1080
+TARGET_STOCK_ASPECT = TARGET_STOCK_WIDTH / TARGET_STOCK_HEIGHT
+ASPECT_TOLERANCE = 0.01
 STOPWORDS = {
     "a", "al", "algo", "ante", "asi", "aun", "aunque", "bajo", "cada", "casi", "como", "con",
     "contra", "cual", "cuando", "de", "del", "desde", "donde", "dos", "el", "ella", "ellas", "ello",
@@ -282,6 +286,39 @@ def ffprobe_duration(path: Path) -> float:
     )
 
 
+def ffprobe_video_dimensions(path: Path) -> tuple[int, int]:
+    payload = json.loads(
+        subprocess.check_output(
+            [
+                "ffprobe",
+                "-v",
+                "error",
+                "-select_streams",
+                "v:0",
+                "-show_entries",
+                "stream=width,height",
+                "-of",
+                "json",
+                str(path),
+            ],
+            text=True,
+        )
+    )
+    streams = payload.get("streams", [])
+    if not streams:
+        raise RuntimeError(f"ffprobe no devolvió stream de video para {path}")
+    stream = streams[0]
+    return int(stream.get("width") or 0), int(stream.get("height") or 0)
+
+
+def is_target_stock_format(width: int, height: int) -> bool:
+    if width <= 0 or height <= 0:
+        return False
+    if width != TARGET_STOCK_WIDTH or height != TARGET_STOCK_HEIGHT:
+        return False
+    return abs((width / height) - TARGET_STOCK_ASPECT) <= ASPECT_TOLERANCE
+
+
 def infer_category(text: str, source: str = "") -> str:
     words = set(normalize_text(text).split())
     if words & {"dna", "helix", "microscope", "microscopy", "laboratory", "lab", "molecule", "molecules", "protein", "proteins"}:
@@ -400,6 +437,49 @@ def select_query_jobs(segments: List[dict], episode_name: str, limit: int) -> Li
     return jobs
 
 
+def compute_dynamic_stock_profile(segments: List[dict], sources: List[str]) -> dict:
+    heading_count = sum(1 for segment in segments if segment["type"] == "heading")
+    body_count = sum(1 for segment in segments if segment["type"] == "body")
+    total_duration = sum(float(segment["duration"]) for segment in segments)
+    timeline_minutes = total_duration / 60.0 if total_duration else 0.0
+
+    query_limit = min(
+        24,
+        max(
+            8,
+            heading_count + math.ceil(timeline_minutes / 6.0),
+            math.ceil(body_count / 14.0),
+        ),
+    )
+    clip_target = min(
+        36,
+        max(
+            12,
+            heading_count * 2,
+            math.ceil(timeline_minutes * 0.8),
+            math.ceil(body_count / 7.0),
+        ),
+    )
+    per_source = min(
+        5,
+        max(
+            3,
+            math.ceil(clip_target / max(1.0, query_limit * 1.5)),
+        ),
+    )
+
+    return {
+        "query_limit": int(query_limit),
+        "clip_target": int(clip_target),
+        "per_source": int(per_source),
+        "heading_count": int(heading_count),
+        "body_segment_count": int(body_count),
+        "segment_count": int(len(segments)),
+        "timeline_seconds": round(total_duration, 3),
+        "source_count": len(sources),
+    }
+
+
 def build_similarity_matrix(segment_queries: List[str], candidate_texts: List[str]):
     all_texts = segment_queries + candidate_texts
     word_vectorizer = TfidfVectorizer(ngram_range=(1, 2), min_df=1)
@@ -443,6 +523,23 @@ def build_result(
     )
 
 
+def choose_exact_1080p_file(files: List[dict], url_keys: Tuple[str, ...] = ("link", "url")) -> dict | None:
+    for item in files:
+        width = int(item.get("width") or 0)
+        height = int(item.get("height") or 0)
+        url = ""
+        for key in url_keys:
+            candidate = str(item.get(key, "") or "")
+            if candidate:
+                url = candidate
+                break
+        if not url.lower().endswith(".mp4"):
+            continue
+        if is_target_stock_format(width, height):
+            return item
+    return None
+
+
 def search_pexels_videos(query: str, per_page: int, keys: Dict[str, str]) -> List[SearchResult]:
     api_key = get_key("PEXELS_API_KEY", keys)
     if not api_key:
@@ -456,11 +553,9 @@ def search_pexels_videos(query: str, per_page: int, keys: Dict[str, str]) -> Lis
         return []
     results = []
     for video in payload.get("videos", []):
-        files = sorted(video.get("video_files", []), key=lambda item: item.get("height", 0), reverse=True)
-        if not files:
-            continue
-        best = files[0]
-        if not str(best.get("link", "")).lower().endswith(".mp4"):
+        files = sorted(video.get("video_files", []), key=lambda item: (item.get("height", 0), item.get("width", 0)), reverse=True)
+        best = choose_exact_1080p_file(files, ("link",))
+        if not best:
             continue
         results.append(
             build_result(
@@ -493,12 +588,8 @@ def search_pixabay_videos(query: str, per_page: int, keys: Dict[str, str]) -> Li
     results = []
     for video in payload.get("hits", []):
         variants = video.get("videos", {})
-        best = None
-        for label in ["large", "medium", "small", "tiny"]:
-            variant = variants.get(label)
-            if variant and str(variant.get("url", "")).lower().endswith(".mp4"):
-                best = variant
-                break
+        ordered_variants = [variants.get(label) for label in ["large", "medium", "small", "tiny"] if variants.get(label)]
+        best = choose_exact_1080p_file(ordered_variants, ("url",))
         if not best:
             continue
         results.append(
@@ -538,6 +629,10 @@ def search_nasa_videos(query: str, per_page: int, _keys: Dict[str, str]) -> List
         if not mp4s:
             continue
         download_url = next((url for url in mp4s if "~orig" in url.lower()), mp4s[0])
+        width = int(data.get("width") or 0)
+        height = int(data.get("height") or 0)
+        if not is_target_stock_format(width, height):
+            continue
         results.append(
             build_result(
                 "nasa_v",
@@ -547,6 +642,8 @@ def search_nasa_videos(query: str, per_page: int, _keys: Dict[str, str]) -> List
                 download_url,
                 f"https://images.nasa.gov/details/{nasa_id}",
                 author="NASA",
+                width=width,
+                height=height,
                 quality="HD",
             )
         )
@@ -572,6 +669,10 @@ def search_nasa_svs(query: str, per_page: int, _keys: Dict[str, str]) -> List[Se
             mp4s = [asset.get("href", "") for asset in assets["collection"].get("items", []) if str(asset.get("href", "")).lower().endswith(".mp4")]
             if not mp4s:
                 continue
+            width = int(data.get("width") or 0)
+            height = int(data.get("height") or 0)
+            if not is_target_stock_format(width, height):
+                continue
             results.append(
                 build_result(
                     "nasa_svs",
@@ -581,6 +682,8 @@ def search_nasa_svs(query: str, per_page: int, _keys: Dict[str, str]) -> List[Se
                     mp4s[0],
                     f"https://images.nasa.gov/details/{nasa_id}",
                     author="NASA GSFC SVS",
+                    width=width,
+                    height=height,
                     quality="HD",
                 )
             )
@@ -619,7 +722,17 @@ def search_archive_videos(query: str, per_page: int, _keys: Dict[str, str]) -> L
         )
         if not mp4s:
             continue
-        download_url = f"https://archive.org/download/{identifier}/{mp4s[0]['name']}"
+        best = next(
+            (
+                item
+                for item in mp4s
+                if is_target_stock_format(int(item.get("width") or 0), int(item.get("height") or 0))
+            ),
+            None,
+        )
+        if not best:
+            continue
+        download_url = f"https://archive.org/download/{identifier}/{best['name']}"
         if not is_accessible(download_url):
             continue
         results.append(
@@ -631,6 +744,8 @@ def search_archive_videos(query: str, per_page: int, _keys: Dict[str, str]) -> L
                 download_url,
                 f"https://archive.org/details/{identifier}",
                 author="Internet Archive",
+                width=int(best.get("width") or 0),
+                height=int(best.get("height") or 0),
                 quality="HD",
             )
         )
@@ -650,6 +765,10 @@ def search_coverr_videos(query: str, per_page: int, _keys: Dict[str, str]) -> Li
             continue
         results = []
         for video in hits[:per_page]:
+            width = int(video.get("width") or video.get("video_width") or 0)
+            height = int(video.get("height") or video.get("video_height") or 0)
+            if not is_target_stock_format(width, height):
+                continue
             url = video.get("video_url", "") or video.get("urls", {}).get("mp4", "")
             if not str(url).lower().endswith(".mp4"):
                 continue
@@ -662,6 +781,8 @@ def search_coverr_videos(query: str, per_page: int, _keys: Dict[str, str]) -> Li
                     url,
                     video.get("url", "https://coverr.co"),
                     duration=video.get("duration"),
+                    width=width,
+                    height=height,
                     author="Coverr",
                 )
             )
@@ -699,6 +820,10 @@ def search_wikimedia_videos(query: str, per_page: int, _keys: Dict[str, str]) ->
         if not any(item in license_short.lower() for item in safe_licenses):
             continue
         url = info.get("url", "")
+        width = int(info.get("width", 0) or 0)
+        height = int(info.get("height", 0) or 0)
+        if not is_target_stock_format(width, height):
+            continue
         title = page.get("title", "").replace("File:", "")
         results.append(
             build_result(
@@ -708,8 +833,8 @@ def search_wikimedia_videos(query: str, per_page: int, _keys: Dict[str, str]) ->
                 metadata.get("ImageDescription", {}).get("value", ""),
                 url,
                 info.get("descriptionurl", ""),
-                width=info.get("width", 0),
-                height=info.get("height", 0),
+                width=width,
+                height=height,
                 quality="HD" if info.get("height", 0) >= 720 else "SD",
                 author=clean_html(metadata.get("Artist", {}).get("value", "")),
                 license_short=license_short,
@@ -798,6 +923,8 @@ def select_download_pool(scored: List[dict], clip_target: int, allow_non_mp4: bo
         result = item["result"]
         if result.download_url in used_urls:
             continue
+        if not is_target_stock_format(result.width, result.height):
+            continue
         if not allow_non_mp4 and result.source not in MP4_SOURCES and not str(result.download_url).lower().endswith(".mp4"):
             continue
         if not result.download_url.startswith("http"):
@@ -839,6 +966,12 @@ def download_result(result: SearchResult, destination: Path) -> ClipCandidate:
                 destination.unlink()
             tmp.replace(destination)
             duration = ffprobe_duration(destination)
+            width, height = ffprobe_video_dimensions(destination)
+            if not is_target_stock_format(width, height):
+                destination.unlink(missing_ok=True)
+                raise RuntimeError(
+                    f"formato no permitido {width}x{height} para {result.download_url}; se requiere {TARGET_STOCK_WIDTH}x{TARGET_STOCK_HEIGHT} 16:9"
+                )
             return ClipCandidate(
                 file_name=destination.name,
                 file_path=str(destination),
@@ -884,12 +1017,21 @@ def write_stock_manifest(episode_dir: Path, selected: List[dict], downloaded: Li
     manifest_path.write_text("\n".join(rows) + "\n", encoding="utf-8")
 
 
-def write_search_report(episode_dir: Path, query_jobs: List[dict], counts: Dict[str, int], scored: List[dict], selected: List[dict], downloaded: List[ClipCandidate]):
+def write_search_report(
+    episode_dir: Path,
+    query_jobs: List[dict],
+    counts: Dict[str, int],
+    scored: List[dict],
+    selected: List[dict],
+    downloaded: List[ClipCandidate],
+    stock_profile: dict,
+):
     stock_root = resolve_stock_root(episode_dir)
     stock_root.mkdir(parents=True, exist_ok=True)
     report_path = stock_root / "stock-search-report.json"
     report = {
         "episode": episode_dir.name,
+        "stock_profile": stock_profile,
         "queries": query_jobs,
         "source_result_counts": counts,
         "selected_candidates": [
@@ -901,6 +1043,9 @@ def write_search_report(episode_dir: Path, query_jobs: List[dict], counts: Dict[
                 "page_url": clip.page_url,
                 "download_url": clip.mp4_url,
                 "duration": clip.duration,
+                "width": TARGET_STOCK_WIDTH,
+                "height": TARGET_STOCK_HEIGHT,
+                "aspect_ratio": "16:9",
             }
             for clip in downloaded
         ],
@@ -915,6 +1060,9 @@ def write_search_report(episode_dir: Path, query_jobs: List[dict], counts: Dict[
                 "download_url": item["result"].download_url,
                 "page_url": item["result"].page_url,
                 "category": item["result"].inferred_category,
+                "width": item["result"].width,
+                "height": item["result"].height,
+                "aspect_ratio": "16:9" if is_target_stock_format(item["result"].width, item["result"].height) else "filtered-out",
             }
             for item in scored[:60]
         ],
@@ -928,24 +1076,34 @@ def process_episode(
     *,
     sources: List[str],
     keys: Dict[str, str],
-    per_source: int,
-    query_limit: int,
-    clip_target: int,
+    per_source: int | None,
+    query_limit: int | None,
+    clip_target: int | None,
     dry_run: bool,
     allow_non_mp4: bool,
 ):
     episode_dir = resolve_episode_dir(episode_name)
     segments = create_segments(episode_dir, episode_name)
-    query_jobs = select_query_jobs(segments, episode_name, query_limit)
-    results, counts = execute_search_jobs(query_jobs, sources, per_source, keys)
+    profile = compute_dynamic_stock_profile(segments, sources)
+    effective_query_limit = query_limit if query_limit is not None else profile["query_limit"]
+    effective_clip_target = clip_target if clip_target is not None else profile["clip_target"]
+    effective_per_source = per_source if per_source is not None else profile["per_source"]
+    effective_profile = {
+        **profile,
+        "query_limit": effective_query_limit,
+        "clip_target": effective_clip_target,
+        "per_source": effective_per_source,
+    }
+    query_jobs = select_query_jobs(segments, episode_name, effective_query_limit)
+    results, counts = execute_search_jobs(query_jobs, sources, effective_per_source, keys)
     deduped = {}
     for result in results:
         deduped.setdefault(result.download_url, result)
     scored = score_candidates(list(deduped.values()), segments)
-    selected = select_download_pool(scored, clip_target, allow_non_mp4)
+    selected = select_download_pool(scored, effective_clip_target, allow_non_mp4)
 
     if dry_run:
-        write_search_report(episode_dir, query_jobs, counts, scored, selected, [])
+        write_search_report(episode_dir, query_jobs, counts, scored, selected, [], effective_profile)
         return {
             "episode": episode_name,
             "query_count": len(query_jobs),
@@ -953,6 +1111,7 @@ def process_episode(
             "deduped_results": len(deduped),
             "selected": len(selected),
             "planned": False,
+            "stock_profile": effective_profile,
         }
 
     if not selected:
@@ -964,14 +1123,23 @@ def process_episode(
         for old_file in stock_dir.glob("*.mp4"):
             old_file.unlink()
     downloaded: List[ClipCandidate] = []
-    for index, item in enumerate(selected, start=1):
-        destination = stock_dir / f"{index:03}.mp4"
-        downloaded.append(download_result(item["result"], destination))
+    successful_selected: List[dict] = []
+    for item in selected:
+        destination = stock_dir / f"{len(downloaded) + 1:03}.mp4"
+        try:
+            clip = download_result(item["result"], destination)
+        except RuntimeError:
+            continue
+        downloaded.append(clip)
+        successful_selected.append(item)
+
+    if not downloaded:
+        raise RuntimeError(f"{episode_name}: no se pudo descargar ningún clip que cumpliera 1920x1080 16:9")
 
     planned = rank_segments(segments, downloaded, episode_name)
     write_outputs(episode_dir, episode_name, planned)
-    write_stock_manifest(episode_dir, selected, downloaded)
-    write_search_report(episode_dir, query_jobs, counts, scored, selected, downloaded)
+    write_stock_manifest(episode_dir, successful_selected, downloaded)
+    write_search_report(episode_dir, query_jobs, counts, scored, successful_selected, downloaded, effective_profile)
 
     return {
         "episode": episode_name,
@@ -980,6 +1148,7 @@ def process_episode(
         "deduped_results": len(deduped),
         "selected": len(downloaded),
         "planned": True,
+        "stock_profile": effective_profile,
     }
 
 
@@ -988,9 +1157,9 @@ def parse_args():
     parser.add_argument("--episode", choices=EPISODES, help="Procesa un episodio concreto.")
     parser.add_argument("--all", action="store_true", help="Procesa toda la serie.")
     parser.add_argument("--sources", default=",".join(DEFAULT_SOURCES), help="Fuentes separadas por comas.")
-    parser.add_argument("--per-source", type=int, default=6, help="Resultados por fuente y consulta.")
-    parser.add_argument("--query-limit", type=int, default=24, help="Número máximo de consultas semánticas compactas.")
-    parser.add_argument("--clips", type=int, default=36, help="Tamaño objetivo del pool descargado.")
+    parser.add_argument("--per-source", type=int, help="Resultados por fuente y consulta. Si se omite, se calcula dinámicamente.")
+    parser.add_argument("--query-limit", type=int, help="Número máximo de consultas semánticas compactas. Si se omite, se calcula dinámicamente.")
+    parser.add_argument("--clips", type=int, help="Tamaño objetivo del pool descargado. Si se omite, se calcula dinámicamente.")
     parser.add_argument("--dry-run", action="store_true", help="Busca y puntúa sin descargar ni replanificar.")
     parser.add_argument("--allow-non-mp4", action="store_true", help="Permite seleccionar fuentes no MP4.")
     args = parser.parse_args()
@@ -1017,8 +1186,9 @@ def main():
             allow_non_mp4=args.allow_non_mp4,
         )
         summary.append(result)
+        profile = result["stock_profile"]
         print(
-            f"{episode_name}|QUERIES={result['query_count']}|RAW={result['raw_results']}|DEDUPED={result['deduped_results']}|SELECTED={result['selected']}|PLANNED={result['planned']}"
+            f"{episode_name}|QUERIES={result['query_count']}|RAW={result['raw_results']}|DEDUPED={result['deduped_results']}|SELECTED={result['selected']}|PLANNED={result['planned']}|QUERY_LIMIT={profile['query_limit']}|CLIP_TARGET={profile['clip_target']}|PER_SOURCE={profile['per_source']}"
         )
     if not summary:
         sys.exit(1)

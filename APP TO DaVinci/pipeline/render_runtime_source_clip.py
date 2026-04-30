@@ -186,6 +186,7 @@ def main():
     fade_out = max(total_audio - 5.0, 0.0)
     output = paths["source_output"]
     volume = music_volume(plan["brief_snapshot"]["music_and_sound"]["music_intensity"])
+    filter_script = paths["render_dir"] / "runtime-filter-complex.txt"
     cmd = ["ffmpeg", "-loglevel", "error", "-y"]
     for path in visual_paths:
         cmd += ["-i", str(path)]
@@ -200,9 +201,10 @@ def main():
         + f"[{music_input_idx}:a]aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=stereo,volume={volume:.2f},afade=t=in:st=0:d=3,afade=t=out:st={fade_out:.3f}:d=5[m];"
         + f"[n][m]amix=inputs=2:duration=first:normalize=0[a]"
     )
+    filter_script.write_text(filter_complex, encoding="utf-8")
     cmd += [
-        "-filter_complex",
-        filter_complex,
+        "-filter_complex_script",
+        str(filter_script),
         "-map",
         "[vfinal]",
         "-map",

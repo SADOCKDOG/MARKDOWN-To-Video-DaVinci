@@ -4,6 +4,8 @@ from copy import deepcopy
 from datetime import datetime, timezone
 from pathlib import Path
 
+from production_brief_workflow import sync_brief_files
+
 
 def load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
@@ -35,14 +37,16 @@ def main():
     template["approval"]["project_verified"] = True
     template["approval"]["approved_by_user"] = True
     template["approval"]["approval_prompt_reference"] = args.approval_prompt
+    template["global_runtime_policy"] = deepcopy(settings.get("global_runtime_policy", {}))
     template["implementation_state"]["brief_completed"] = False
     template["implementation_state"]["ready_for_render_plan"] = False
     template["implementation_state"]["last_updated_utc"] = datetime.now(timezone.utc).isoformat()
 
     output_path = project_dir / "00-admin" / settings["production_brief_filename"]
+    template, questionnaire_path = sync_brief_files(project_dir, args.project, template)
     output_path.write_text(json.dumps(template, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
-    print(f"OK|PROJECT={args.project}|BRIEF={output_path}")
+    print(f"OK|PROJECT={args.project}|BRIEF={output_path}|QUESTIONNAIRE={questionnaire_path}")
 
 
 if __name__ == "__main__":

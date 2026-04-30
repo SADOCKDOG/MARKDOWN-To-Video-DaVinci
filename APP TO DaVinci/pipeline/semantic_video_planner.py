@@ -182,14 +182,14 @@ def extract_blocks(md_path: Path):
     for line in text.splitlines():
         match = re.match(r"^(#{1,3})\s+(.*)$", line)
         if match:
-            if current_title is not None:
+            if current_title is not None and current_level >= 2:
                 blocks.append((current_level, current_title.strip(), clean_body(current_body)))
             current_level = len(match.group(1))
             current_title = match.group(2).strip()
             current_body = []
         elif current_title is not None:
             current_body.append(line)
-    if current_title is not None:
+    if current_title is not None and current_level >= 2:
         blocks.append((current_level, current_title.strip(), clean_body(current_body)))
     return blocks
 
