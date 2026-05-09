@@ -1,0 +1,21 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# Generated project assets
+**/output/**
+!**/output/.gitkeep
+**/input/avatars/*
+!**/input/avatars/.gitkeep
+
+# Local runtime artifacts
+converted_*/
+openvino_genai_env/
+sdnext/
+outputs_*/
