@@ -122,6 +122,42 @@ La aplicacion publicada aqui es el **nucleo reusable**, pero el flujo completo p
 | Experimentacion | Jupyter / Colab | Notebooks de prueba, tuning y validacion visual | No |
 | Edicion y conformado | DaVinci Resolve | Ensamblado, ritmo, color, audio y export de video | No |
 
+## Herramientas utilizadas alrededor de esta base
+
+Estas son las piezas que se usaron como entorno de trabajo alrededor de la aplicacion:
+
+| Herramienta | Uso concreto en el flujo |
+| --- | --- |
+| OpenVINO GenAI | Generacion local de imagenes text-to-image cuando se queria ejecutar inferencia en local sin depender de una WebUI pesada |
+| `optimum-cli export openvino` | Conversion de modelos de Hugging Face a formato OpenVINO IR para poder usarlos con OpenVINO GenAI |
+| SDNext | Interfaz local para iterar prompts, comparar variantes, ajustar parametros y explorar resultados visuales |
+| Stability AI Stable Image API | Generacion remota de imagenes mediante API cuando interesaba un backend externo y parametrizable |
+| Jupyter Lab / Notebooks | Entorno de pruebas para preparar prompts, lanzar lotes, validar modelos y revisar resultados |
+| Google Colab | Ejecucion ocasional de notebooks conectados a API o pruebas de generacion fuera del equipo local |
+| DaVinci Resolve | Montaje final: orden de planos, duraciones, continuidad visual, audio, color y render |
+
+## Flujo operativo de referencia
+
+El pipeline real usado alrededor de esta base se puede resumir asi:
+
+1. **Guion tecnico en Markdown**: se redacta el episodio o secuencia con escenas, personajes, descripciones visuales y prompts base.
+2. **Compilacion estructural**: `markdown_to_video_davinci` convierte ese Markdown en manifests, prompts `.txt`, requests `.json` y shotlist `.csv`.
+3. **Preparacion de modelos locales**: cuando se trabaja con OpenVINO, un modelo compatible se convierte con `optimum-cli export openvino`.
+4. **Generacion local con OpenVINO**: los prompts compilados se ejecutan con `openvino_genai.Text2ImagePipeline` para obtener imagenes base.
+5. **Iteracion visual en SDNext**: cuando hace falta exploracion artistica o ajustes manuales, los mismos prompts se prueban en SDNext con variaciones de sampler, steps, CFG, resolucion o estilos.
+6. **Generacion remota por API**: como alternativa o complemento, los prompts pueden enviarse a `Stability AI Stable Image API`.
+7. **Revision y curacion**: se seleccionan las imagenes validas, se descartan variantes y se consolidan los mejores resultados por escena.
+8. **Preparacion editorial**: la shotlist CSV y las imagenes finales se organizan para montaje.
+9. **Montaje y render en DaVinci Resolve**: se ensamblan los planos, se ajustan duraciones, transiciones, sonido, etalonaje y export final.
+
+## Como encajan OpenVINO, SDNext y la API en la arquitectura
+
+- **OpenVINO** cubre la rama de generacion local optimizada.
+- **SDNext** cubre la rama de exploracion visual interactiva.
+- **Stability AI API** cubre la rama de generacion remota por servicio.
+- **DaVinci Resolve** consume el resultado curado de cualquiera de esas ramas.
+- **Este repositorio** queda entre el guion y esos motores: normaliza la entrada y prepara la salida tecnica.
+
 ## Alcance exacto de esta publicacion
 
 **Incluye**:
