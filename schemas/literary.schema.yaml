@@ -1,0 +1,80 @@
+# literary.schema.yaml
+# Schema for the literary Markdown source format.
+# Version: 1.0
+#
+# The literary Markdown file is the human-authored master narrative.
+# It is processed by the parser module and can also serve as input to
+# the `compile-literary` CLI command, which generates a technical YAML draft.
+#
+# Required sections (parsed by parser.py):
+#
+#   ## Calidad visual          — global visual quality baseline (fenced text block)
+#   # PERSONAJE - <NAME>       — one section per character
+#     ## Prompt IA             — image generation prompt for the character
+#   # ESCENA <NN> - <TITLE>   — one section per scene
+#     ## Visual                — prose description of the scene
+#     ## Personajes            — bullet or comma list of characters present
+#     ## Prompt Visual         — image generation prompt for the scene
+#
+# Optional (forward-compatible, ignored by current parser):
+#
+#   ## Planos                  — subsection with shot-level breakdowns
+#     ### PLANO <NN> - <TITLE> — individual shot descriptions
+#   ## Dialogos                — dialogue cues (CHARACTER: "text")
+#
+# Encoding: UTF-8
+# File extension: .md
+
+schema_version: "1.0"
+format: markdown
+encoding: "utf-8"
+
+required_sections:
+  - id: quality
+    heading: "## Calidad visual"
+    type: fenced_text_block
+    description: >
+      Global visual quality baseline appended to every image prompt.
+      Use a concise, comma-separated style descriptor.
+    example: >
+      Cinematic realism, grounded textures, expressive faces,
+      controlled light, natural color palette, production-ready visual continuity.
+
+  - id: characters
+    heading_pattern: "# PERSONAJE - <NAME>"
+    min_count: 0
+    subsections:
+      - heading: "## Prompt IA"
+        type: fenced_text_block
+        required: true
+        description: >
+          Character reference prompt for image generation.
+
+  - id: scenes
+    heading_pattern: "# ESCENA <NN|FINAL> - <TITLE>"
+    min_count: 1
+    subsections:
+      - heading: "## Visual"
+        type: prose
+        required: true
+        description: >
+          Prose description of the scene's atmosphere, action and staging.
+      - heading: "## Personajes"
+        type: list_or_csv
+        required: false
+        description: >
+          Bullet list or comma-separated list of character names present.
+      - heading: "## Prompt Visual"
+        type: fenced_text_block
+        required: true
+        description: >
+          Image generation prompt for the scene's establishing or key shot.
+
+optional_sections:
+  - heading: "## Planos"
+    description: >
+      Shot-level breakdown within a scene.  Not parsed by the current parser;
+      used as human notes and picked up by the `compile-literary` command.
+  - heading: "## Dialogos"
+    description: >
+      Dialogue cues within a scene.  Format: "CHARACTER: text on one line".

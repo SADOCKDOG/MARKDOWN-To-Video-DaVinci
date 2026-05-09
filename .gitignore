@@ -13,6 +13,10 @@ env/
 !**/output/.gitkeep
 **/input/avatars/*
 !**/input/avatars/.gitkeep
+**/input/literary/*
+!**/input/literary/.gitkeep
+**/input/technical/*
+!**/input/technical/.gitkeep
 
 # Local runtime artifacts
 converted_*/
