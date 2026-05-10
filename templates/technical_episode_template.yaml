@@ -1,0 +1,133 @@
+schema_version: '1.0'
+episode_id: "ep01"
+title: "Titulo del episodio"
+quality_prompt: "Cinematic realism, grounded textures, expressive faces, controlled light, natural color palette, production-ready visual continuity."
+
+characters:
+  protagonista:
+    name: "PROTAGONISTA"
+    prompt: "Photorealistic cinematic portrait of the protagonist, natural skin, grounded wardrobe, expressive eyes, realistic lighting, high detail."
+  guia:
+    name: "GUIA"
+    prompt: "Photorealistic cinematic portrait of the guide, calm presence, practical clothing, subtle age details, natural environment, high detail."
+
+scenes:
+  - code: "ESCENA 01"
+    title: "Apertura"
+    visual_summary: "El protagonista llega al lugar central de la historia y detecta que algo no encaja."
+    visual_prompt: "Two grounded characters arrive at an ancient location at dawn, humid air, subtle tension, cinematic composition, realistic textures."
+    characters:
+      - "PROTAGONISTA"
+      - "GUIA"
+    shots:
+      - index: 1
+        code: "ESCENA 01 - PLANO 01"
+        description: "Plano general: el protagonista y la guia se acercan por un camino de tierra. Luz rasante y dorada."
+        visual_prompt: "Wide shot, two characters approaching on a dirt path at golden hour, backlit silhouettes, cinematic realism, textured landscape."
+        timing:
+          duration_seconds: 6.0
+          transition_in: cut
+          transition_out: cut
+          timeline_track: V1
+        characters:
+          - "PROTAGONISTA"
+          - "GUIA"
+        dialogue: []
+        resources:
+          - kind: image
+            slug: "escena-01-plano-01"
+            prompt: "Wide shot, two characters approaching on a dirt path at golden hour, backlit silhouettes, cinematic realism, textured landscape."
+            state: planned
+
+      - index: 2
+        code: "ESCENA 01 - PLANO 02"
+        description: "Plano medio: el protagonista frena el paso y mira algo fuera de campo con expresion tensa."
+        visual_prompt: "Medium shot, protagonist halting mid-step, gaze directed off-screen, slight frown, warm side light, cinematic realism."
+        timing:
+          duration_seconds: 4.0
+          transition_in: cut
+          transition_out: cut
+          timeline_track: V1
+        characters:
+          - "PROTAGONISTA"
+        dialogue:
+          - character: "PROTAGONISTA"
+            text: "No esperaba encontrarlo tan pronto."
+            timing_offset_seconds: 0.5
+            state: planned
+        resources:
+          - kind: image
+            slug: "escena-01-plano-02"
+            prompt: "Medium shot, protagonist halting mid-step, gaze directed off-screen, slight frown, warm side light, cinematic realism."
+            state: planned
+
+      - index: 3
+        code: "ESCENA 01 - PLANO 03"
+        description: "Plano detalle: una marca o signo extrano grabado en la piedra de la entrada."
+        visual_prompt: "Extreme close-up, ancient carved mark on stone doorway, dramatic raking light, dust motes, cinematic realism, mystery."
+        timing:
+          duration_seconds: 3.0
+          transition_in: cut
+          transition_out: cut
+          timeline_track: V1
+        characters: []
+        dialogue: []
+        resources:
+          - kind: image
+            slug: "escena-01-plano-03"
+            prompt: "Extreme close-up, ancient carved mark on stone doorway, dramatic raking light, dust motes, cinematic realism, mystery."
+            state: planned
+
+  - code: "ESCENA 02"
+    title: "Hallazgo"
+    visual_summary: "La tension crece cuando aparece la primera evidencia clara del conflicto."
+    visual_prompt: "The protagonist discovers a decisive clue inside a dimly lit chamber, dust, reflected light, atmospheric depth, cinematic realism."
+    characters:
+      - "PROTAGONISTA"
+      - "GUIA"
+    shots:
+      - index: 1
+        code: "ESCENA 02 - PLANO 01"
+        description: "Plano conjunto: la sala interior apenas iluminada. Una fuente de luz puntual recorta las siluetas."
+        visual_prompt: "Two-shot interior, dimly lit chamber, single light source carving silhouettes from darkness, cinematic realism, atmospheric depth."
+        timing:
+          duration_seconds: 5.0
+          transition_in: dissolve
+          transition_out: cut
+          timeline_track: V1
+        characters:
+          - "PROTAGONISTA"
+          - "GUIA"
+        dialogue:
+          - character: "GUIA"
+            text: "Aqui. Mira esto."
+            timing_offset_seconds: 1.0
+            state: planned
+        resources:
+          - kind: image
+            slug: "escena-02-plano-01"
+            prompt: "Two-shot interior, dimly lit chamber, single light source carving silhouettes from darkness, cinematic realism, atmospheric depth."
+            state: planned
+
+      - index: 2
+        code: "ESCENA 02 - PLANO 02"
+        description: "Plano medio corto: la guia senala algo en la pared con expresion tensa."
+        visual_prompt: "Medium close-up, guide pointing at wall inscription, tense expression, motivated light from off-screen torch, cinematic realism."
+        timing:
+          duration_seconds: 6.0
+          transition_in: cut
+          transition_out: cut
+          timeline_track: V1
+        characters:
+          - "PROTAGONISTA"
+          - "GUIA"
+        dialogue:
+          - character: "PROTAGONISTA"
+            text: "Imposible. Esto cambia todo."
+            timing_offset_seconds: 0.5
+            state: planned
+        resources:
+          - kind: image
+            slug: "escena-02-plano-02"
+            prompt: "Medium close-up, guide pointing at wall inscription, tense expression, motivated light from off-screen torch, cinematic realism."
+            state: planned

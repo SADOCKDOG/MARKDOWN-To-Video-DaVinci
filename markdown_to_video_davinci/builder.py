@@ -25,6 +25,7 @@ def create_project_structure(project_dir: Path) -> dict[str, Path]:
     input_dir = ensure_directory(project_dir / "input")
     output_dir = ensure_directory(project_dir / "output")
     paths = {
+        # --- legacy paths (unchanged) ---
         "project": ensure_directory(project_dir),
         "input": input_dir,
         "avatars": ensure_directory(input_dir / "avatars"),
@@ -35,16 +36,39 @@ def create_project_structure(project_dir: Path) -> dict[str, Path]:
         "manifests": ensure_directory(output_dir / "manifests"),
         "prompts": ensure_directory(output_dir / "prompts"),
         "requests": ensure_directory(output_dir / "requests"),
+        # --- new pipeline paths ---
+        "literary": ensure_directory(input_dir / "literary"),
+        "technical": ensure_directory(input_dir / "technical"),
+        "audio": ensure_directory(output_dir / "audio"),
+        "clips": ensure_directory(output_dir / "clips"),
+        "subtitles": ensure_directory(output_dir / "subtitles"),
+        "review": ensure_directory(output_dir / "review"),
+        "logs": ensure_directory(output_dir / "logs"),
     }
     return paths
 
 
 def copy_project_template(project_dir: Path, repository_dir: Path) -> None:
     paths = create_project_structure(project_dir)
-    template_markdown = repository_dir / "templates" / "episode_template.md"
+    templates_dir = repository_dir / "templates"
+
+    # Legacy episode template
+    template_markdown = templates_dir / "episode_template.md"
     destination_markdown = paths["markdown"] / "episode_template.md"
     if template_markdown.exists() and not destination_markdown.exists():
         shutil.copyfile(template_markdown, destination_markdown)
+
+    # Literary episode template → input/literary/
+    literary_template = templates_dir / "literary_episode_template.md"
+    destination_literary = paths["literary"] / "literary_episode_template.md"
+    if literary_template.exists() and not destination_literary.exists():
+        shutil.copyfile(literary_template, destination_literary)
+
+    # Technical YAML template → input/technical/
+    technical_template = templates_dir / "technical_episode_template.yaml"
+    destination_technical = paths["technical"] / "technical_episode_template.yaml"
+    if technical_template.exists() and not destination_technical.exists():
+        shutil.copyfile(technical_template, destination_technical)
 
 
 def find_markdown_file(project_dir: Path) -> Path:

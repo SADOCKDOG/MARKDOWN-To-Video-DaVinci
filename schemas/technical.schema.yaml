@@ -1,0 +1,166 @@
+# technical.schema.yaml
+# Schema for the technical YAML script format.
+# Version: 1.0
+#
+# The technical YAML is the editable first-class source of truth that drives
+# all downstream pipeline stages (breakdown → assets → resolve → review).
+# It is generated as a draft by `compile-literary` and then refined by humans.
+#
+# Top-level fields:
+#   schema_version  string  required  Must be "1.0"
+#   episode_id      string  required  Slug identifier, e.g. "EP01"
+#   title           string  required  Human-readable episode title
+#   quality_prompt  string  required  Global visual quality baseline
+#   characters      map     required  slug → { name, prompt }
+#   scenes          list    required  List of scene objects (see below)
+#
+# Scene fields:
+#   code            string  required  e.g. "ESCENA 01"
+#   title           string  required  e.g. "Apertura"
+#   visual_summary  string  required  One-sentence prose summary
+#   visual_prompt   string  required  Scene-level image prompt (fallback)
+#   characters      list    optional  List of character slugs present
+#   shots           list    required  List of shot objects (see below)
+#
+# Shot fields:
+#   index           int     required  1-based shot index within scene
+#   code            string  required  e.g. "ESCENA 01 - PLANO 01"
+#   description     string  required  Brief prose description of the shot
+#   visual_prompt   string  required  Shot-specific image prompt
+#   timing          object  optional  Timing and track defaults (see below)
+#   characters      list    optional  Character names/slugs in shot
+#   dialogue        list    optional  List of dialogue cues (see below)
+#   resources       list    optional  List of resource intents (see below)
+#
+# Timing fields:
+#   duration_seconds  float   default 6.0
+#   transition_in     string  default "cut"  ("cut" | "dissolve" | "fade")
+#   transition_out    string  default "cut"
+#   timeline_track    string  default "V1"
+#
+# Dialogue cue fields:
+#   character             string  required
+#   text                  string  required
+#   timing_offset_seconds float   default 0.0
+#   voice_path            string  optional  Path to generated WAV
+#   state                 string  default "planned"  (planned|generated|selected|rejected|approved)
+#
+# Resource intent fields:
+#   kind    string  required  "image" | "audio" | "clip"
+#   slug    string  required  Unique slug for the asset
+#   prompt  string  optional  Image prompt (for kind=image)
+#   path    string  optional  Path to generated asset
+#   state   string  default "planned"
+
+schema_version: "1.0"
+
+properties:
+  schema_version:
+    type: string
+    const: "1.0"
+  episode_id:
+    type: string
+    pattern: "^[a-z0-9][a-z0-9-]*$"
+  title:
+    type: string
+  quality_prompt:
+    type: string
+  characters:
+    type: object
+    additionalProperties:
+      type: object
+      required: [name, prompt]
+      properties:
+        name:
+          type: string
+        prompt:
+          type: string
+  scenes:
+    type: array
+    minItems: 1
+    items:
+      type: object
+      required: [code, title, visual_summary, visual_prompt, shots]
+      properties:
+        code:
+          type: string
+        title:
+          type: string
+        visual_summary:
+          type: string
+        visual_prompt:
+          type: string
+        characters:
+          type: array
+          items:
+            type: string
+        shots:
+          type: array
+          minItems: 1
+          items:
+            type: object
+            required: [index, code, description, visual_prompt]
+            properties:
+              index:
+                type: integer
+                minimum: 1
+              code:
+                type: string
+              description:
+                type: string
+              visual_prompt:
+                type: string
+              timing:
+                type: object
+                properties:
+                  duration_seconds:
+                    type: number
+                    minimum: 0.5
+                  transition_in:
+                    type: string
+                    enum: [cut, dissolve, fade, wipe]
+                  transition_out:
+                    type: string
+                    enum: [cut, dissolve, fade, wipe]
+                  timeline_track:
+                    type: string
+              characters:
+                type: array
+                items:
+                  type: string
+              dialogue:
+                type: array
+                items:
+                  type: object
+                  required: [character, text]
+                  properties:
+                    character:
+                      type: string
+                    text:
+                      type: string
+                    timing_offset_seconds:
+                      type: number
+                      minimum: 0.0
+                    voice_path:
+                      type: [string, "null"]
+                    state:
+                      type: string
+                      enum: [planned, generated, selected, rejected, approved]
+              resources:
+                type: array
+                items:
+                  type: object
+                  required: [kind, slug]
+                  properties:
+                    kind:
+                      type: string
+                      enum: [image, audio, clip]
+                    slug:
+                      type: string
+                    prompt:
+                      type: [string, "null"]
+                    path:
+                      type: [string, "null"]
+                    state:
+                      type: string
+                      enum: [planned, generated, selected, rejected, approved]

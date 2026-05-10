@@ -1,0 +1,39 @@
+# ===========================================================================
+# MARKDOWN-to-Video-DaVinci — dependencias Python
+# ===========================================================================
+# El nucleo del pipeline (parser, builder, modelos, exportadores CSV/JSON)
+# usa unicamente la biblioteca estandar de Python 3.10+.
+# Las dependencias externas son opcionales segun el proveedor que se active.
+# ===========================================================================
+
+# ---------------------------------------------------------------------------
+# YAML (Etapa 2 — build-technical: parse del guion tecnico .yaml)
+# ---------------------------------------------------------------------------
+pyyaml>=6.0
+
+# ---------------------------------------------------------------------------
+# HTTP (Etapa 6a Stability AI + Etapa 6b ElevenLabs)
+# Necesario para cualquier proveedor de API remoto.
+# ---------------------------------------------------------------------------
+requests>=2.31
+
+# ---------------------------------------------------------------------------
+# TTS local offline (Etapa 6b — --tts-provider local)
+# Usa SAPI en Windows 11 y espeak en Linux.
+# ---------------------------------------------------------------------------
+pyttsx3>=2.90
+
+# ---------------------------------------------------------------------------
+# Generacion de imagen local (Etapa 6a — --image-provider openvino)
+# Requiere hardware Intel y modelo IR convertido con optimum-cli.
+# Instalar solo si se usa el proveedor OpenVINO.
+# ---------------------------------------------------------------------------
+# openvino-genai>=2024.1
+
+# ---------------------------------------------------------------------------
+# NOTA — FFmpeg
+# FFmpeg es una herramienta de sistema, no un paquete pip.
+# Descarga e instalacion: https://ffmpeg.org/download.html
+# En Windows: winget install Gyan.FFmpeg
+# En Ubuntu/Debian: sudo apt install ffmpeg
+# ---------------------------------------------------------------------------
