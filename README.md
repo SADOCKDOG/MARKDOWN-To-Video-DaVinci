@@ -12,10 +12,11 @@ Este repositorio **no contiene datos de proyectos concretos**: no incluye person
 | Parser Markdown | `markdown_to_video_davinci\parser.py` | Extrae calidad visual, personajes, escenas y prompts |
 | Builder de salidas | `markdown_to_video_davinci\builder.py` | Genera manifiestos JSON, prompts `.txt`, requests por escena y shotlist `.csv` |
 | Modelos de datos | `markdown_to_video_davinci\models\` | Contratos tipados: canonico, assets, resolve, revision |
-| Pipeline de etapas | `markdown_to_video_davinci\pipeline\` | Orquestadores por etapa: literary, breakdown, assets, resolve_prep, review |
+| Pipeline de etapas | `markdown_to_video_davinci\pipeline\` | Orquestadores por etapa: literary, breakdown, assets, resolve_prep, review, run_assets |
 | Integracion Resolve | `markdown_to_video_davinci\integrations\resolve\` | Exportador CSV legado + paquete JSON rico |
-| Integracion TTS | `markdown_to_video_davinci\integrations\tts\` | Abstraccion de proveedor de voz (local offline) |
-| Integracion imagenes | `markdown_to_video_davinci\integrations\images\` | Abstraccion de proveedor de imagen (Stability AI, OpenVINO) |
+| Integracion TTS | `markdown_to_video_davinci\integrations\tts\` | Proveedores de voz: local offline (pyttsx3) y ElevenLabs API |
+| Integracion imagenes | `markdown_to_video_davinci\integrations\images\` | Proveedores de imagen: Stability AI API y OpenVINO local |
+| Integracion clips | `markdown_to_video_davinci\integrations\clips\` | Runner FFmpeg: ensamblado de still + audio en clip MP4 base |
 | Schemas | `schemas\` | Definiciones YAML de cada capa del pipeline |
 | Plantilla literaria | `templates\literary_episode_template.md` | Guion literario de ejemplo con planos y dialogos |
 | Plantilla tecnica | `templates\technical_episode_template.yaml` | Guion tecnico YAML con planos, dialogos y timings |
@@ -31,7 +32,7 @@ Este repositorio **no contiene datos de proyectos concretos**: no incluye person
 5. Genera el paquete Resolve (JSON rico + CSV legado) para ensamblado semi-automatico.
 6. Emite el manifiesto de revision humana con checklist de QC por plano.
 
-## Arquitectura del pipeline en 6 etapas
+## Arquitectura del pipeline en 8 etapas
 
 ```
 Etapa 1 — compile-literary   Markdown literario → YAML tecnico borrador
@@ -39,7 +40,10 @@ Etapa 2 — build-technical    YAML tecnico       → JSON canonico
 Etapa 3 — generate-assets    JSON canonico      → registros de jobs de imagen/voz/clip
 Etapa 4 — prepare-resolve    JSON canonico      → paquete Resolve JSON + CSV
 Etapa 5 — review-pack        JSON canonico      → manifiesto de revision humana
-Etapa 6 — [Human + Resolve]  Revision editorial + render final
+Etapa 6a — run-images        Registro de assets → imagenes generadas (Stability AI | OpenVINO)
+Etapa 6b — run-voice         Registro de assets → audio sintetizado (local pyttsx3 | ElevenLabs)
+Etapa 6c — run-clips         Registro de assets → clips base MP4 (FFmpeg: still + audio)
+Etapa 7 — [Human + Resolve]  Revision editorial + render final en DaVinci Resolve
 ```
 
 ## Estructura del proyecto generado
@@ -66,7 +70,7 @@ mi_proyecto/
 
 ## Uso rapido
 
-### Flujo completo (nuevo pipeline de 5 etapas)
+### Flujo completo (pipeline de 8 etapas)
 
 ```powershell
 # Inicializar proyecto (copia plantillas a input/literary/ e input/technical/)
@@ -80,7 +84,7 @@ python -m markdown_to_video_davinci.cli compile-literary .\proyecto_demo
 # Etapa 2 — Generar manifiesto canonico JSON
 python -m markdown_to_video_davinci.cli build-technical .\proyecto_demo
 
-# Etapa 3 — Generar registros de jobs de assets
+# Etapa 3 — Generar registros de jobs de assets (planificacion, no ejecucion)
 python -m markdown_to_video_davinci.cli generate-assets .\proyecto_demo
 
 # Etapa 4 — Generar paquete Resolve
@@ -88,6 +92,23 @@ python -m markdown_to_video_davinci.cli prepare-resolve .\proyecto_demo
 
 # Etapa 5 — Generar manifiesto de revision humana
 python -m markdown_to_video_davinci.cli review-pack .\proyecto_demo
+
+# Etapa 6a — Ejecutar jobs de imagen (Stability AI, requiere STABILITY_API_KEY)
+$env:STABILITY_API_KEY="sk-..."
+python -m markdown_to_video_davinci.cli run-images .\proyecto_demo --image-provider stability
+
+# Etapa 6a (alternativa local, sin internet, requiere modelo OpenVINO convertido)
+python -m markdown_to_video_davinci.cli run-images .\proyecto_demo --image-provider openvino --model-dir .\converted_sdxl
+
+# Etapa 6b — Ejecutar jobs de voz (TTS local offline, no requiere internet)
+python -m markdown_to_video_davinci.cli run-voice .\proyecto_demo --tts-provider local
+
+# Etapa 6b (alternativa ElevenLabs, requiere ELEVENLABS_API_KEY)
+$env:ELEVENLABS_API_KEY="..."
+python -m markdown_to_video_davinci.cli run-voice .\proyecto_demo --tts-provider elevenlabs --voice-id 21m00Tcm4TlvDq8ikWAM
+
+# Etapa 6c — Ejecutar jobs de clip (FFmpeg debe estar en PATH)
+python -m markdown_to_video_davinci.cli run-clips .\proyecto_demo
 ```
 
 ### Flujo clasico (compatibilidad total con versiones anteriores)
@@ -149,7 +170,7 @@ Tambien se aceptan encabezados de personaje simples como `# PERSONAJE_A` y lista
 | Shotlist DaVinci | `output\davinci\davinci_shotlist.csv` | Base de importacion y montaje editorial |
 | Resumen de build | `output\manifests\build_summary.json` | Trazabilidad de la compilacion |
 
-### Modo pipeline completo (etapas 1–5)
+### Modo pipeline completo (etapas 1–8)
 
 | Salida | Ruta | Etapa | Uso |
 | --- | --- | --- | --- |
@@ -159,6 +180,9 @@ Tambien se aceptan encabezados de personaje simples como `# PERSONAJE_A` y lista
 | Paquete Resolve | `output\davinci\<id>.resolve_package.json` | 4 `prepare-resolve` | Timeline completo: tracks, bins, relink map, audio, subtitulos, marcadores |
 | Shotlist Resolve | `output\davinci\<id>.davinci_shotlist.csv` | 4 `prepare-resolve` | CSV legado con timings reales por plano |
 | Manifiesto de revision | `output\review\<id>.review.json` | 5 `review-pack` | Checklist de QC humano: continuidad, lipsync, subtitulos, loudness, assets faltantes |
+| Imagenes generadas | `output\images\<shot_slug>.png` | 6a `run-images` | PNG por plano generado por Stability AI o OpenVINO |
+| Audio sintetizado | `output\audio\<cue_slug>.wav` | 6b `run-voice` | WAV por dialogo sintetizado por pyttsx3 o ElevenLabs |
+| Clips base | `output\clips\<shot_slug>.mp4` | 6c `run-clips` | MP4 base (still + audio) ensamblado por FFmpeg |
 
 ## Pipeline completo
 
@@ -181,11 +205,12 @@ La aplicacion publicada aqui es el **nucleo reusable**, pero el flujo completo p
 | Definicion de contenido | Markdown + YAML | Guion literario y guion tecnico editable | Si |
 | Estructura de intercambio | JSON / CSV / TXT | Canonico, registros de assets, paquete Resolve, manifiestos | Si |
 | Schemas de validacion | YAML Schema | Documentacion y validacion de cada capa | Si |
-| Generacion de imagen local | OpenVINO GenAI | Text-to-image local sobre modelos convertidos | No (proveedor externo) |
-| Generacion de imagen por API | Stability AI Stable Image API | Generacion remota de imagenes desde prompts | No (proveedor externo) |
+| Generacion de imagen local | OpenVINO GenAI | Text-to-image local sobre modelos convertidos | Si (proveedor integrado) |
+| Generacion de imagen por API | Stability AI Stable Image API | Generacion remota de imagenes desde prompts | Si (proveedor integrado) |
 | UI local de imagen | SDNext u otras WebUI compatibles | Exploracion iterativa, pruebas y ajuste fino | No |
-| TTS local | pyttsx3 (SAPI Windows) | Sintesis de voz offline para borradores de audio | No (proveedor externo) |
-| Ensamblado de clips | FFmpeg | Pan/zoom sobre stills + audio para clips base | No |
+| TTS local | pyttsx3 (SAPI Windows) | Sintesis de voz offline para borradores de audio | Si (proveedor integrado) |
+| TTS de calidad | ElevenLabs API | Sintesis de voz de calidad final en multiples idiomas | Si (proveedor integrado) |
+| Ensamblado de clips | FFmpeg | Pan/zoom sobre stills + audio para clips base | Si (runner integrado) |
 | Experimentacion | Jupyter / Colab | Notebooks de prueba, tuning y validacion visual | No |
 | Edicion y conformado | DaVinci Resolve | Ensamblado, ritmo, color, audio y export de video | No |
 
@@ -213,12 +238,12 @@ El pipeline completo se resume asi:
 2. **`compile-literary`**: genera un borrador YAML tecnico en `input\technical\` con planos, dialogos y timings por defecto.
 3. **Edicion humana del YAML**: se ajustan planos, se anaden dialogos y se refinan timings.
 4. **`build-technical`**: convierte el YAML en el JSON canonico autoritativo.
-5. **`generate-assets`**: produce los registros de jobs de imagen, voz y clip para los proveedores elegidos.
-6. **Generacion de imagenes**: los jobs se lanzan contra OpenVINO (local), Stability AI (API) o SDNext (UI).
-7. **Sintesis de voz**: los jobs de voz se lanzan contra el TTS local (pyttsx3 en Windows) o una API.
-8. **Clips base**: FFmpeg combina cada still con su audio para producir un clip MP4 base.
-9. **`prepare-resolve`**: genera el paquete Resolve JSON + CSV con paths reales de imagenes y audio.
-10. **`review-pack`**: genera el manifiesto de revision con checklist de QC por plano.
+5. **`generate-assets`**: produce los registros de jobs de imagen, voz y clip (planificacion, sin ejecucion).
+6. **`prepare-resolve`**: genera el paquete Resolve JSON + CSV con paths esperados de imagenes y audio.
+7. **`review-pack`**: genera el manifiesto de revision con checklist de QC por plano.
+8. **`run-images`**: ejecuta los jobs de imagen contra OpenVINO (local) o Stability AI (API).
+9. **`run-voice`**: ejecuta los jobs de voz contra pyttsx3 (local offline) o ElevenLabs (API).
+10. **`run-clips`**: ejecuta los jobs de clip: FFmpeg combina cada still con su audio para producir un MP4 base.
 11. **Revision humana**: el editor rellena el manifiesto, marca planos aprobados y descarta variantes.
 12. **Montaje y render en DaVinci Resolve**: se ensamblan los planos con el paquete JSON de referencia, se ajustan transiciones, color, audio y se exporta el video final.
 
@@ -228,9 +253,10 @@ El pipeline completo se resume asi:
 - **SDNext** cubre la rama de exploracion visual interactiva y ajuste fino de prompts.
 - **Stability AI API** cubre la rama de generacion remota parametrizable por servicio.
 - **pyttsx3 / SAPI** cubre la sintesis de voz local offline sin coste de licencia.
+- **ElevenLabs API** cubre la sintesis de voz de calidad final multilingue para la produccion aprobada.
 - **FFmpeg** cubre la generacion de clips base ligeros a partir de stills (sin GPU).
 - **DaVinci Resolve** consume el resultado curado de cualquiera de esas ramas.
-- **Este repositorio** queda entre el guion y esos motores: normaliza la entrada, orquesta las etapas y prepara las salidas tecnicas.
+- **Este repositorio** queda entre el guion y esos motores: normaliza la entrada, orquesta las etapas, ejecuta los jobs de assets e integra directamente los proveedores mas habituales.
 
 ## Alcance exacto de esta publicacion
 

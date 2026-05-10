@@ -151,6 +151,85 @@ def build_parser() -> argparse.ArgumentParser:
         help="Ruta del JSON canonico.",
     )
 
+    # ------------------------------------------------------------------
+    # Stage 6a — run-images
+    # ------------------------------------------------------------------
+    run_images_cmd = subparsers.add_parser(
+        "run-images",
+        help=(
+            "Etapa 6a: ejecuta los jobs de imagen planificados del registro "
+            "de assets usando el proveedor indicado (stability | openvino)."
+        ),
+    )
+    run_images_cmd.add_argument("project_dir", help="Ruta del proyecto.")
+    run_images_cmd.add_argument(
+        "--registry",
+        help=(
+            "Ruta del JSON del registro de assets. "
+            "Si se omite, usa el primero encontrado en output/manifests/."
+        ),
+    )
+    run_images_cmd.add_argument(
+        "--image-provider",
+        dest="image_provider",
+        default="stability",
+        help="Proveedor de imagen (stability | openvino). Por defecto: stability.",
+    )
+    run_images_cmd.add_argument(
+        "--model-dir",
+        dest="model_dir",
+        help="Directorio del modelo OpenVINO IR (solo para --image-provider openvino).",
+    )
+
+    # ------------------------------------------------------------------
+    # Stage 6b — run-voice
+    # ------------------------------------------------------------------
+    run_voice_cmd = subparsers.add_parser(
+        "run-voice",
+        help=(
+            "Etapa 6b: ejecuta los jobs de voz planificados del registro "
+            "de assets usando el proveedor indicado (local | elevenlabs)."
+        ),
+    )
+    run_voice_cmd.add_argument("project_dir", help="Ruta del proyecto.")
+    run_voice_cmd.add_argument(
+        "--registry",
+        help="Ruta del JSON del registro de assets.",
+    )
+    run_voice_cmd.add_argument(
+        "--tts-provider",
+        dest="tts_provider",
+        default="local",
+        help="Proveedor TTS (local | elevenlabs). Por defecto: local.",
+    )
+    run_voice_cmd.add_argument(
+        "--voice-id",
+        dest="voice_id",
+        help="Voice ID de ElevenLabs (solo para --tts-provider elevenlabs).",
+    )
+
+    # ------------------------------------------------------------------
+    # Stage 6c — run-clips
+    # ------------------------------------------------------------------
+    run_clips_cmd = subparsers.add_parser(
+        "run-clips",
+        help=(
+            "Etapa 6c: ejecuta los jobs de clip planificados del registro "
+            "de assets ensamblando cada still + audio via FFmpeg."
+        ),
+    )
+    run_clips_cmd.add_argument("project_dir", help="Ruta del proyecto.")
+    run_clips_cmd.add_argument(
+        "--registry",
+        help="Ruta del JSON del registro de assets.",
+    )
+    run_clips_cmd.add_argument(
+        "--ffmpeg-bin",
+        dest="ffmpeg_bin",
+        default="ffmpeg",
+        help="Ruta o nombre del ejecutable ffmpeg. Por defecto: ffmpeg.",
+    )
+
     return parser
 
 
@@ -281,6 +360,68 @@ def main() -> None:
                     "review_manifest": str(manifest_path),
                     "canonical_json": str(canonical_path),
                 },
+                ensure_ascii=False,
+                indent=2,
+            )
+        )
+        return
+
+    # -- Stage 6a: run-images -----------------------------------------------
+    if args.command == "run-images":
+        from .pipeline.run_assets import run_image_jobs
+
+        kwargs = {}
+        if getattr(args, "model_dir", None):
+            kwargs["model_dir"] = args.model_dir
+        registry_path = run_image_jobs(
+            project_dir,
+            image_provider_name=args.image_provider,
+            registry_path=getattr(args, "registry", None),
+            **kwargs,
+        )
+        print(
+            json.dumps(
+                {"asset_registry": str(registry_path), "image_provider": args.image_provider},
+                ensure_ascii=False,
+                indent=2,
+            )
+        )
+        return
+
+    # -- Stage 6b: run-voice ------------------------------------------------
+    if args.command == "run-voice":
+        from .pipeline.run_assets import run_voice_jobs
+
+        kwargs = {}
+        if getattr(args, "voice_id", None):
+            kwargs["voice_id"] = args.voice_id
+        registry_path = run_voice_jobs(
+            project_dir,
+            tts_provider_name=args.tts_provider,
+            registry_path=getattr(args, "registry", None),
+            **kwargs,
+        )
+        print(
+            json.dumps(
+                {"asset_registry": str(registry_path), "tts_provider": args.tts_provider},
+                ensure_ascii=False,
+                indent=2,
+            )
+        )
+        return
+
+    # -- Stage 6c: run-clips ------------------------------------------------
+    if args.command == "run-clips":
+        from .pipeline.run_assets import run_clip_jobs
+
+        registry_path = run_clip_jobs(
+            project_dir,
+            ffmpeg_bin=args.ffmpeg_bin,
+            registry_path=getattr(args, "registry", None),
+        )
+        print(
+            json.dumps(
+                {"asset_registry": str(registry_path), "clip_runner": "ffmpeg"},
                 ensure_ascii=False,
                 indent=2,
             )

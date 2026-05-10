@@ -25,6 +25,21 @@ class ImageJob:
     def to_dict(self) -> dict:
         return dataclasses.asdict(self)
 
+    @classmethod
+    def from_dict(cls, data: dict) -> ImageJob:
+        return cls(
+            job_id=data["job_id"],
+            episode_id=data["episode_id"],
+            scene_code=data["scene_code"],
+            shot_code=data["shot_code"],
+            prompt=data["prompt"],
+            output_path=data["output_path"],
+            state=AssetState(data.get("state", AssetState.PLANNED)),
+            provider=data.get("provider", "stability"),
+            width=int(data.get("width", 1920)),
+            height=int(data.get("height", 1080)),
+        )
+
 
 @dataclass
 class VoiceJob:
@@ -44,6 +59,21 @@ class VoiceJob:
     def to_dict(self) -> dict:
         return dataclasses.asdict(self)
 
+    @classmethod
+    def from_dict(cls, data: dict) -> VoiceJob:
+        return cls(
+            job_id=data["job_id"],
+            episode_id=data["episode_id"],
+            scene_code=data["scene_code"],
+            shot_code=data["shot_code"],
+            character=data["character"],
+            text=data["text"],
+            output_path=data["output_path"],
+            state=AssetState(data.get("state", AssetState.PLANNED)),
+            provider=data.get("provider", "local"),
+            language=data.get("language", "es"),
+        )
+
 
 @dataclass
 class ClipJob:
@@ -62,6 +92,20 @@ class ClipJob:
     def to_dict(self) -> dict:
         return dataclasses.asdict(self)
 
+    @classmethod
+    def from_dict(cls, data: dict) -> ClipJob:
+        return cls(
+            job_id=data["job_id"],
+            episode_id=data["episode_id"],
+            scene_code=data["scene_code"],
+            shot_code=data["shot_code"],
+            image_path=data["image_path"],
+            audio_path=data.get("audio_path"),
+            output_path=data["output_path"],
+            duration_seconds=float(data.get("duration_seconds", 6.0)),
+            state=AssetState(data.get("state", AssetState.PLANNED)),
+        )
+
 
 @dataclass
 class AssetRegistry:
@@ -75,3 +119,13 @@ class AssetRegistry:
 
     def to_dict(self) -> dict:
         return dataclasses.asdict(self)
+
+    @classmethod
+    def from_dict(cls, data: dict) -> AssetRegistry:
+        return cls(
+            episode_id=data["episode_id"],
+            schema_version=data.get("schema_version", "1.0"),
+            image_jobs=[ImageJob.from_dict(j) for j in data.get("image_jobs", [])],
+            voice_jobs=[VoiceJob.from_dict(j) for j in data.get("voice_jobs", [])],
+            clip_jobs=[ClipJob.from_dict(j) for j in data.get("clip_jobs", [])],
+        )
