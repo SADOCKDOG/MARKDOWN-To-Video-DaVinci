@@ -93,6 +93,7 @@ def validate_local_pipeline(
 
     final_registry = _load_registry(registry_path)
     final_counts = _registry_counts(final_registry)
+    _assert_validation_success(final_registry, first_pass_counts, final_counts)
 
     return {
         "project_dir": str(project_dir),
@@ -111,7 +112,7 @@ def validate_local_pipeline(
         },
         "first_pass_counts": first_pass_counts,
         "final_counts": final_counts,
-        "outputs": _output_summary(project_dir),
+        "outputs": _output_summary(final_registry),
     }
 
 
@@ -168,8 +169,10 @@ def _resolve_markdown(project_dir: Path) -> Path:
         candidates = sorted((project_dir / "input" / subdir).glob("*.md"))
         if candidates:
             return candidates[0]
+    literary_dir = project_dir / "input" / "literary"
+    markdown_dir = project_dir / "input" / "markdown"
     raise FileNotFoundError(
-        f"No se encontro ningun Markdown en {project_dir}\\input\\literary ni input\\markdown."
+        f"No se encontro ningun Markdown en {literary_dir} ni en {markdown_dir}."
     )
 
 
@@ -213,10 +216,34 @@ def _registry_counts(registry: AssetRegistry) -> dict[str, dict[str, int]]:
     }
 
 
-def _output_summary(project_dir: Path) -> dict[str, object]:
-    images = sorted((project_dir / "output" / "images").glob("*.png"))
-    audio = sorted((project_dir / "output" / "audio").glob("*.wav"))
-    clips = sorted((project_dir / "output" / "clips").glob("*.mp4"))
+def _assert_validation_success(
+    registry: AssetRegistry,
+    first_pass_counts: dict[str, dict[str, int]],
+    final_counts: dict[str, dict[str, int]],
+) -> None:
+    failures: list[str] = []
+    if first_pass_counts != final_counts:
+        failures.append(
+            "La segunda pasada de idempotencia cambio los conteos del registry."
+        )
+
+    for label, jobs in (
+        ("image_jobs", registry.image_jobs),
+        ("voice_jobs", registry.voice_jobs),
+        ("clip_jobs", registry.clip_jobs),
+    ):
+        bad_jobs = [job.job_id for job in jobs if job.state.value != "generated"]
+        if bad_jobs:
+            failures.append(f"{label} con estado no generado: {', '.join(bad_jobs)}")
+
+    if failures:
+        raise RuntimeError("Validacion local fallida: " + " | ".join(failures))
+
+
+def _output_summary(registry: AssetRegistry) -> dict[str, object]:
+    images = sorted(Path(job.output_path) for job in registry.image_jobs)
+    audio = sorted(Path(job.output_path) for job in registry.voice_jobs)
+    clips = sorted(Path(job.output_path) for job in registry.clip_jobs)
     return {
         "images": _summarize_files(images),
         "audio": _summarize_audio(audio),
