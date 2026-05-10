@@ -124,6 +124,34 @@ Para compilar un Markdown especifico (modo clasico):
 python -m markdown_to_video_davinci.cli build .\proyecto_demo --markdown .\proyecto_demo\input\markdown\mi_episodio.md
 ```
 
+### Validacion local-first reproducible
+
+Para repetir el E2E local completo con un solo comando:
+
+```powershell
+python -m markdown_to_video_davinci.cli validate-local .\tmp_validation --model-dir .\converted_openjourney
+```
+
+Este comando:
+
+1. ejecuta el preflight local (`pyttsx3`, `openvino_genai`, `numpy`, `Pillow`, `ffmpeg`, modelo IR)
+2. inicializa el proyecto si hace falta
+3. compila el Markdown literario
+4. usa por defecto la fixture tecnica estable `technical_episode_template.yaml`
+5. genera canonico, registro de assets, paquete Resolve y manifiesto de revision
+6. ejecuta `run-images`, `run-voice` y `run-clips`
+7. repite `run-voice` y `run-clips` para comprobar idempotencia basica
+8. devuelve un resumen JSON con conteos, estados y artefactos generados
+
+Flags utiles:
+
+- `--model-dir` **obligatorio**
+- `--image-width` / `--image-height` para ajustar la resolucion del smoke test local
+- `--markdown` para forzar otra entrada literaria
+- `--technical` para forzar otro YAML tecnico
+- `--episode-id` para fijar el identificador del episodio compilado
+- `--ffmpeg-bin` para usar una ruta explicita de FFmpeg
+
 ## Formato Markdown esperado
 
 El parser trabaja con una estructura neutral como esta:

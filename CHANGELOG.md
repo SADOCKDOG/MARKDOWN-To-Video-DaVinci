@@ -8,12 +8,18 @@ El versionado sigue [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Nuevo subcomando `validate-local` para automatizar el carril local-first completo con OpenVINO + pyttsx3/SAPI + FFmpeg.
+- Nuevo modulo `pipeline/local_validation.py` para preflight, orquestacion del E2E local, ajuste de resolucion de smoke test y verificacion final de artefactos.
+
 ### Documentacion
 
 - README ampliado con una estrategia de validacion end-to-end para v0.2.0.
 - Documentado el carril automatizado principal local: OpenVINO + pyttsx3/SAPI + FFmpeg.
 - Documentado el carril complementario manual/remoto: SDNext, Stability AI API, ElevenLabs API y DaVinci Resolve.
 - Anotados preflight, reanudacion del asset registry y casos de fallo recomendados para pruebas del pipeline.
+- README actualizado con el nuevo comando `validate-local` y sus flags principales.
 
 ### Fixed
 
