@@ -230,6 +230,60 @@ def build_parser() -> argparse.ArgumentParser:
         help="Ruta o nombre del ejecutable ffmpeg. Por defecto: ffmpeg.",
     )
 
+    # ------------------------------------------------------------------
+    # Local-first validation — full reproducible local E2E
+    # ------------------------------------------------------------------
+    validate_local_cmd = subparsers.add_parser(
+        "validate-local",
+        help=(
+            "Ejecuta la validacion local-first completa del pipeline con "
+            "OpenVINO + pyttsx3/SAPI + FFmpeg y devuelve un resumen JSON."
+        ),
+    )
+    validate_local_cmd.add_argument("project_dir", help="Ruta del proyecto de validacion.")
+    validate_local_cmd.add_argument(
+        "--model-dir",
+        dest="model_dir",
+        required=True,
+        help="Directorio del modelo OpenVINO IR usado por run-images.",
+    )
+    validate_local_cmd.add_argument(
+        "--markdown",
+        help="Markdown literario a usar. Si se omite, usa la plantilla copiada en input/literary/.",
+    )
+    validate_local_cmd.add_argument(
+        "--technical",
+        help=(
+            "YAML tecnico a usar para el build canonico. "
+            "Si se omite, prioriza input/technical/technical_episode_template.yaml."
+        ),
+    )
+    validate_local_cmd.add_argument(
+        "--episode-id",
+        dest="episode_id",
+        help="Identificador opcional del episodio al compilar el Markdown literario.",
+    )
+    validate_local_cmd.add_argument(
+        "--ffmpeg-bin",
+        dest="ffmpeg_bin",
+        default="ffmpeg",
+        help="Ruta o nombre del ejecutable ffmpeg. Por defecto: ffmpeg.",
+    )
+    validate_local_cmd.add_argument(
+        "--image-width",
+        dest="image_width",
+        default=256,
+        type=int,
+        help="Ancho de imagen para la validacion local. Por defecto: 256.",
+    )
+    validate_local_cmd.add_argument(
+        "--image-height",
+        dest="image_height",
+        default=256,
+        type=int,
+        help="Alto de imagen para la validacion local. Por defecto: 256.",
+    )
+
     return parser
 
 
@@ -426,6 +480,24 @@ def main() -> None:
                 indent=2,
             )
         )
+        return
+
+    # -- Local-first validation -----------------------------------------------
+    if args.command == "validate-local":
+        from .pipeline.local_validation import validate_local_pipeline
+
+        summary = validate_local_pipeline(
+            project_dir=project_dir,
+            repository_dir=repository_dir,
+            model_dir=Path(args.model_dir),
+            markdown_path=Path(args.markdown) if getattr(args, "markdown", None) else None,
+            technical_path=Path(args.technical) if getattr(args, "technical", None) else None,
+            ffmpeg_bin=args.ffmpeg_bin,
+            image_width=args.image_width,
+            image_height=args.image_height,
+            episode_id=getattr(args, "episode_id", None),
+        )
+        print(json.dumps(summary, ensure_ascii=False, indent=2))
         return
 
     raise ValueError(f"Comando no soportado: {args.command}")

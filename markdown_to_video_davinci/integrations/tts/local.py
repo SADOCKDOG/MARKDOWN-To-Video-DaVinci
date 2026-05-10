@@ -32,29 +32,29 @@ class LocalTTSProvider(TTSProvider):
     def __init__(self, rate: int = 150, volume: float = 1.0) -> None:
         self._rate = rate
         self._volume = volume
-        self._engine = None  # lazy-loaded
 
-    def _get_engine(self):
-        if self._engine is None:
-            try:
-                import pyttsx3  # type: ignore[import]
-            except ModuleNotFoundError as exc:
-                raise RuntimeError(
-                    "The 'pyttsx3' package is required for LocalTTSProvider. "
-                    "Install it with: pip install pyttsx3"
-                ) from exc
-            engine = pyttsx3.init()
-            engine.setProperty("rate", self._rate)
-            engine.setProperty("volume", self._volume)
-            self._engine = engine
-        return self._engine
+    def _build_engine(self):
+        try:
+            import pyttsx3  # type: ignore[import]
+        except ModuleNotFoundError as exc:
+            raise RuntimeError(
+                "The 'pyttsx3' package is required for LocalTTSProvider. "
+                "Install it with: pip install pyttsx3"
+            ) from exc
+        engine = pyttsx3.init()
+        engine.setProperty("rate", self._rate)
+        engine.setProperty("volume", self._volume)
+        return engine
 
     def synthesise(self, job: VoiceJob) -> VoiceJob:
-        engine = self._get_engine()
+        engine = self._build_engine()
         out_path = Path(job.output_path)
         out_path.parent.mkdir(parents=True, exist_ok=True)
-        engine.save_to_file(job.text, str(out_path))
-        engine.runAndWait()
+        try:
+            engine.save_to_file(job.text, str(out_path))
+            engine.runAndWait()
+        finally:
+            engine.stop()
         if out_path.exists() and out_path.stat().st_size > 0:
             job.state = AssetState.GENERATED
         else:
