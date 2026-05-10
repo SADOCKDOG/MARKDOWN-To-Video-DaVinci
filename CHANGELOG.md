@@ -6,6 +6,17 @@ El versionado sigue [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [Unreleased]
+
+### Documentacion
+
+- README ampliado con una estrategia de validacion end-to-end para v0.2.0.
+- Documentado el carril automatizado principal local: OpenVINO + pyttsx3/SAPI + FFmpeg.
+- Documentado el carril complementario manual/remoto: SDNext, Stability AI API, ElevenLabs API y DaVinci Resolve.
+- Anotados preflight, reanudacion del asset registry y casos de fallo recomendados para pruebas del pipeline.
+
+---
+
 ## [0.2.0] — 2026-05-10
 
 ### Lo que habia (v0.1.0)

@@ -258,6 +258,76 @@ El pipeline completo se resume asi:
 - **DaVinci Resolve** consume el resultado curado de cualquiera de esas ramas.
 - **Este repositorio** queda entre el guion y esos motores: normaliza la entrada, orquesta las etapas, ejecuta los jobs de assets e integra directamente los proveedores mas habituales.
 
+## Estrategia de validacion end-to-end recomendada
+
+La validacion del pipeline v0.2.0 debe separarse en dos carriles:
+
+1. **Carril automatizado principal local**: valida la ejecucion completa sin depender de APIs remotas.
+2. **Carril complementario manual/remoto**: valida exploracion visual, proveedores premium y conformado editorial.
+
+### Carril automatizado principal local
+
+Este es el recorrido recomendado para probar el pipeline completo de extremo a extremo:
+
+```text
+init-project
+  -> compile-literary
+  -> build-technical
+  -> generate-assets --image-provider openvino --tts-provider local
+  -> prepare-resolve
+  -> review-pack
+  -> run-images --image-provider openvino --model-dir <openvino_ir_model>
+  -> run-voice --tts-provider local
+  -> run-clips
+```
+
+Objetivos minimos de validacion:
+
+- se crea `input\technical\*.yaml` desde el guion literario
+- se genera `*.canonical.json`
+- se genera `*.asset_registry.json`
+- se generan `*.resolve_package.json` y `*.davinci_shotlist.csv`
+- se genera `*.review.json`
+- `run-images` produce PNG por plano
+- `run-voice` produce WAV por dialogo
+- `run-clips` produce MP4 por plano
+- el registro de assets persiste estados `generated` o `rejected`
+
+### Preflight obligatorio antes del E2E local
+
+Antes de ejecutar el carril local completo hay que comprobar:
+
+- `pyyaml`, `requests` y `pyttsx3` instalados en el entorno Python
+- `ffmpeg` disponible en `PATH`
+- `openvino_genai`, `numpy` y `Pillow` disponibles si se usara OpenVINO
+- existencia de un directorio de modelo IR convertido para `--model-dir`
+- permisos de escritura sobre `output\`
+
+### Carril complementario manual y remoto
+
+Este carril no sustituye al E2E local; lo complementa:
+
+- **SDNext**: revision manual de prompts y ajuste fino interactivo
+- **Stability AI API**: smoke tests remotos para la rama de imagen por servicio
+- **ElevenLabs API**: smoke tests remotos para voz final multilingue
+- **DaVinci Resolve**: importacion manual del paquete Resolve y comprobacion editorial final
+
+### Reanudacion y persistencia
+
+El pipeline debe validarse tambien en escenarios de continuacion:
+
+- relectura de `*.asset_registry.json` desde disco
+- re-ejecucion de `run-voice` y `run-clips` sin reprocesar jobs ya `generated`
+- persistencia correcta de estados `planned`, `generated` y `rejected`
+
+### Casos de fallo que deben comprobarse
+
+- `run-images --image-provider openvino` sin `openvino_genai`
+- `run-images --image-provider openvino` con `--model-dir` invalido
+- `run-clips` con `ffmpeg` ausente o incorrecto
+- ausencia de imagen o audio esperado antes del ensamblado del clip
+- artefactos vacios o corruptos aunque el archivo exista
+
 ## Alcance exacto de esta publicacion
 
 **Incluye**:
