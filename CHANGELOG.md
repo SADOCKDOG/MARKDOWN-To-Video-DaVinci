@@ -15,6 +15,11 @@ El versionado sigue [Semantic Versioning](https://semver.org/).
 - Documentado el carril complementario manual/remoto: SDNext, Stability AI API, ElevenLabs API y DaVinci Resolve.
 - Anotados preflight, reanudacion del asset registry y casos de fallo recomendados para pruebas del pipeline.
 
+### Fixed
+
+- `LocalTTSProvider` ya no reutiliza una unica instancia de `pyttsx3` entre jobs consecutivos.
+- Corregido un bloqueo en la validacion local end-to-end al sintetizar varios cues de voz en una misma ejecucion.
+
 ---
 
 ## [0.2.0] — 2026-05-10
